@@ -20,14 +20,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 /**
- * TODO 添加类的一句话简单描述.
- * <p>
- * TODO 详细描述
- * <p>
- * TODO 示例代码
- * 
- * <pre>
- * </pre>
+ * TODO 初级的测试类，简单字段，不包括泛型.
  * 
  * @author tianzhong
  */
