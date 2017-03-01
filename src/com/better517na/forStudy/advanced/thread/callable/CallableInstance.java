@@ -37,6 +37,8 @@ public class CallableInstance /*extends Thread*/ implements Callable<String> {
         this.currentName = name;
         // super(name);
         // Thread.currentThread().setName(name);
+        // Thread.currentThread().setPriority(1);
+        // Thread.yield();
     }
 
     /**
@@ -45,6 +47,7 @@ public class CallableInstance /*extends Thread*/ implements Callable<String> {
     @Override
     public String call() throws Exception {
         // return Thread.currentThread().getName();
+        System.out.println("当前线程名: " + Thread.currentThread().getName() + ", 当前线程优先级: " + Thread.currentThread().getPriority());
         return this.currentName;
     }
 
