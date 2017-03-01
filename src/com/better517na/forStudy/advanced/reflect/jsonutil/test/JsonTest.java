@@ -15,13 +15,23 @@ import java.util.List;
 import java.util.Map;
 
 import com.better517na.forStudy.advanced.reflect.jsonutil.JsonUtilsNew2;
+import com.better517na.forStudy.advanced.reflect.jsonutil.test.model.AddressCodeBo;
+import com.better517na.forStudy.advanced.reflect.jsonutil.test.model.BoostBo;
+import com.better517na.forStudy.advanced.reflect.jsonutil.test.model.CityBo;
 import com.better517na.forStudy.util.JsonUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 /**
- * TODO 初级的测试类，简单字段，不包括泛型.
+ * TODO 添加类的一句话简单描述.
+ * <p>
+ * TODO 详细描述
+ * <p>
+ * TODO 示例代码
  * 
+ * <pre>
+ * </pre>
+ *  
  * @author tianzhong
  */
 @SuppressWarnings("unchecked")

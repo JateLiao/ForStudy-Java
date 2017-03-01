@@ -20,6 +20,8 @@ import org.junit.Test;
 
 import com.better517na.forStudy.advanced.reflect.jsonutil.JsonUtilsNew3;
 import com.better517na.forStudy.advanced.reflect.jsonutil.model.TypeContainer;
+import com.better517na.forStudy.advanced.reflect.jsonutil.test.model.Define;
+import com.better517na.forStudy.advanced.reflect.jsonutil.test.model.GenA;
 import com.better517na.forStudy.util.JsonUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -79,8 +81,8 @@ public class JsonTest3 {
             ((ParameterizedType)cn).getActualTypeArguments();
             
             new Gson().fromJson("", null);
-            JsonUtilsNew3.toObject("", String.class, null);
-            new TypeContainer(null, null);
+//            JsonUtilsNew3.toObject("", String.class, null);
+//            new TypeContainer(null, null);
         }
     }
 
@@ -141,6 +143,7 @@ public class JsonTest3 {
 //        System.out.println(gen.def.defineName);
     }
     
+    @SuppressWarnings("unchecked")
     @Test
     public void testToObjGenric2() throws Exception{
         GenALocal<String, DefineLocal, Map<String, Integer>> gen = new GenALocal<>();

@@ -61,6 +61,7 @@ public class JsonUtilsNew3 {
             CommonUtil.deleteExtraComma(sb); // 干掉多余的逗号
             res = sb.toString();
         } catch (Exception e) {
+            e.printStackTrace();
             res = "";
         }
         return res;
@@ -75,7 +76,7 @@ public class JsonUtilsNew3 {
 
         if (CommonUtil.isBasicType(objClass)) { // 四类八种基本类型，以及String
             if (objClass == int.class || objClass == short.class || objClass == Short.class || objClass == Integer.class || objClass == BigDecimal.class 
-                    || objClass == boolean.class || objClass == Boolean.class) {
+                    || objClass == boolean.class || objClass == Boolean.class || objClass == Double.class || objClass == double.class) {
                 sb.append(obj).append(",");
             } else if (objClass == Date.class) {
                 sb.append("\"" + df.format(obj) + "\",");
@@ -97,7 +98,7 @@ public class JsonUtilsNew3 {
             sb.append("],");
         } else if (CommonUtil.isDefinedModel(objClass)) { // 其他自定义类型
             sb.append("{");
-            Field[] fields = objClass.getDeclaredFields();
+            Field[] fields = ReflectUtil.getAllFieldsArr(objClass);
             for (Field field : fields) {
                 field.setAccessible(true);
                 // 存在内部类时，过滤掉默认保留的this$0对象
@@ -317,6 +318,20 @@ public class JsonUtilsNew3 {
                 }
                 obj = Byte.valueOf(tmpValue);
                 break;
+            case "java.lang.Double":
+                tmpValue = CommonUtil.isNullOrEmpty(fieldName) ? json : CommonUtil.getFieldStr4Basic(json, fieldName, false);
+                if (null == tmpValue) {
+                    return null;
+                }
+                obj = Double.valueOf(tmpValue);
+                break;
+            case "double":
+                tmpValue = CommonUtil.isNullOrEmpty(fieldName) ? json : CommonUtil.getFieldStr4Basic(json, fieldName, false);
+                if (null == tmpValue) {
+                    return 0.0;
+                }
+                obj = Double.valueOf(tmpValue);
+                break;
             default:
                 break;
         }
@@ -340,7 +355,7 @@ public class JsonUtilsNew3 {
         Object localObj = clazz.newInstance(); 
 
         Map<String, SingleJSon> sinMap = CommonUtil.getSingleJsonValueByMap(json);
-        Field[] fds = clazz.getDeclaredFields();
+        Field[] fds = ReflectUtil.getAllFieldsArr(clazz); // clazz.getDeclaredFields();
         for (Field fd : fds) {
             Class fdClz = fd.getType();
             Object obj = null;
@@ -348,15 +363,15 @@ public class JsonUtilsNew3 {
             if (CommonUtil.isBasicType(fdClz)) {
                 obj = instanceBasicObject(json, fd.getName(), fdClz);
             } else if (CommonUtil.isDefinedModel(fdClz)) {
-                String modelJson = CommonUtil.getFieldStr4Others(json, fd.getName(), "{");
+                String modelJson = sinMap.get(fd.getName()).getFieldValue(); // CommonUtil.getFieldStr4Others(json, fd.getName(), "{");
                 obj = instanceModelObject(modelJson, fdClz);
-            } else if (ReflectUtil.isGeneicType(fd.getGenericType())) { // 字段是泛型类型
+            } else if (ReflectUtil.isGeneicType(fd.getGenericType())) { // 字段是泛型类型 
                 Class[] cls = ReflectUtil.getGeneriParamsFromField(fd);
                 if (CommonUtil.isListType(fdClz)) {
-                    String listJson = CommonUtil.getFieldStr4Others(json, fd.getName(), "[");
+                    String listJson = sinMap.get(fd.getName()).getFieldValue(); // CommonUtil.getFieldStr4Others(json, fd.getName(), "[");
                     obj = instanceGenericObject(listJson, List.class, cls); // getClass(fd.getGenericType(), 0)
                 } else if (CommonUtil.isMapType(fdClz)) {
-                    String mapJson = CommonUtil.getFieldStr4Others(json, fd.getName(), "{");
+                    String mapJson = sinMap.get(fd.getName()).getFieldValue(); // CommonUtil.getFieldStr4Others(json, fd.getName(), "{");
                     // obj = instanceMapObject(mapJson, fdClz, localObj);
                     obj = instanceGenericObject(mapJson, fdClz, cls);
                 } else { // 其他：自定义泛型类型
@@ -376,12 +391,12 @@ public class JsonUtilsNew3 {
      * 泛型类型字段类型值构造.
      */
     private static Object instanceGenericObject(String json, Class rawClazz, Class[] genericClazz) throws Exception {
-        // 进入这个方法，json的格式：["":"",{},[]]
+        // 进入这个方法，json的格式：["":"",{},[]] 
         if (CommonUtil.isNullOrEmpty(json)) {
             return null;
         }
         paramNullCheck(rawClazz, genericClazz);
-        if (rawClazz.getTypeParameters().length < genericClazz.length) { // 取前面的类型，后面多余的忽略
+        if (rawClazz.getTypeParameters().length > genericClazz.length) { // 取前面的类型，后面多余的忽略
             throw new JsonUtilException("泛型参数个数与真实所需个数不一致!");
         }
         Object obj = null;
@@ -424,7 +439,7 @@ public class JsonUtilsNew3 {
         // 实例化目标对象
         Object obj = null;
         if (CommonUtil.isListType(clazz)) {
-            return instanceListObject(json, (Class) genericClazzs[0]);
+            return instanceListObject(json, genericClazzs[0]);
             // obj = new ArrayList<>();
         } else if (CommonUtil.isMapType(clazz)) {
             return instanceMapObject(json, (Class) genericClazzs[0], (Class) genericClazzs[1]);
@@ -686,12 +701,19 @@ public class JsonUtilsNew3 {
      * @param class1 .
      * @return .
      */
-    private static Object instanceListObject(String json, Class clazz) {
+    private static Object instanceListObject(String json, Type type) {
         List<Object> list = new ArrayList<>();
         List<String> singleJson = CommonUtil.getSingleJsonFromList(json);
         for (String single : singleJson) {
-            List<Object> tmpList = toObject(single, List.class, clazz);
-            list.add(tmpList.get(0));
+            // List<Object> tmpList = toObject(single, List.class, type);
+            // list.add(tmpList.get(0));
+
+            if (type instanceof Class) {
+                list.add(toObject(single, (Class) type));
+            } else if (type instanceof TypeContainer) {
+                TypeContainer tc = (TypeContainer) type;
+                list.add(toObject(single, (Class) tc.getRawClazz(), tc.getActualTypeArguments()));
+            }
         }
         
         return list;
@@ -776,8 +798,8 @@ public class JsonUtilsNew3 {
      * TODO 构建List<String>.
      */
     private static void buildBasicStringList(List<Object> objList, String value) throws Exception {
-        paramNullCheck(objList, value);
-        // "ac"s"ca","sdas,sads","joisc"
+        paramNullCheck(value);
+        // "ac"s"ca","sdas,sads","joisc" 
         // 以引号作为阶段标准，而非逗号
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < value.length(); i++) {
