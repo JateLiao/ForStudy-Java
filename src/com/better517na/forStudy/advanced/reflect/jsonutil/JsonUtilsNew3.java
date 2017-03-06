@@ -463,7 +463,7 @@ public class JsonUtilsNew3 {
         for (SingleJSon sin : singles) {
             sinMap.put(sin.getFieldName(), sin);
         }
-        Field[] fds = ReflectUtil.getAllFieldsArr(clazz); // clazz.getDeclaredFields();
+        Field[] fds = clazz.getDeclaredFields();
         for (Field fd : fds) {
             fd.setAccessible(true);
             
@@ -639,7 +639,7 @@ public class JsonUtilsNew3 {
         }
         Map<Field, Class> fieldMap = new HashMap<>(); // 存下字段对应的类型
         
-        Field[] fds = ReflectUtil.getAllFieldsArr(rawClazz); // rawClazz.getDeclaredFields();
+        Field[] fds = rawClazz.getDeclaredFields();
         List<SingleJSon> singles = CommonUtil.getSingleJsonValue(json);
         Map<String, SingleJSon> sinMap = new HashMap<>();
         for (SingleJSon sin : singles) {
