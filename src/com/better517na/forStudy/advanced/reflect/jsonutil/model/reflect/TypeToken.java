@@ -87,16 +87,25 @@ public class TypeToken<T> {
      * return TypeContainers instance.
      */
     public Type[] getTypeContainers()  {
-        Type type = this.getType();
-        if (!(type instanceof ParameterizedType)) {
+        //Type type = this.getType();
+        Type superType = this.getClass().getGenericSuperclass();
+        Type target = null;
+        if (superType instanceof ParameterizedType) {
+            ParameterizedType ptTmp = (ParameterizedType) superType;
+            if (ptTmp.getActualTypeArguments()[0] instanceof ParameterizedType) {
+                target = (ParameterizedType) ptTmp.getActualTypeArguments()[0];
+            }
+        }
+        
+        if (!(target instanceof ParameterizedType)) {
             return null;
         }
-        ParameterizedType pt = (ParameterizedType) type;
-        Type[] ts = new Type[pt.getActualTypeArguments().length];
-        // if (pt.getRawType() instanceof Class) {
-        // ts[0] = (Class<?>)pt.getRawType();
-        // }
-        int index = 0;
+        ParameterizedType pt = (ParameterizedType) target;
+        Type[] ts = new Type[pt.getActualTypeArguments().length + 1];
+        if (pt.getRawType() instanceof Class) {
+            ts[0] = (Class<?>) pt.getRawType();
+        }
+        int index = 1;
         for (Type at : pt.getActualTypeArguments()) {
             if (at instanceof Class) {
                 ts[index++] = (Class<?>)at;
