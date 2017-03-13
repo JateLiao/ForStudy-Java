@@ -8,17 +8,14 @@
  */
 package com.better517na.forStudy.frameworks.quartz.test;
 
+import org.springframework.test.context.ContextConfiguration;
+
 /**
  * TODO 添加类的一句话简单描述.
- * <p>
- * TODO 详细描述
- * <p>
- * TODO 示例代码
- * <pre>
- * </pre>
  * 
  * @author     tianzhong
  */
+@ContextConfiguration("/com/better517na/config/spring/app-context*.xml")
 public class BaseTest {
 
 }

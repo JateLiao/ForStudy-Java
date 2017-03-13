@@ -11,7 +11,7 @@
   ">
   
     <!-- thrift暴露接口 -->
-    <bean id="ThriftServiceCenter"
+    <!-- <bean id="ThriftServiceCenter"
         class="com.better517na.JavaServiceRouteHelper.thrift.helper.ThriftServiceCenter">
         <property name="port">
             <value>${thrift.port}</value>
@@ -23,5 +23,5 @@
                     value-ref="tradeIntegrateService"></entry>
             </map>
         </property>
-    </bean>
+    </bean> -->
 </beans>
