@@ -51,10 +51,10 @@ public class ClientTest {
     private static int serverPort = 9099;
 
     private static IThriftTestServcie.Client client = null;
+    private static TTransport transport = null;
 
     static {
         // thrift客户端
-        TTransport transport = null;
         try {
             new Thread() { 
                 public void run() {
@@ -66,7 +66,8 @@ public class ClientTest {
             // 协议要和服务端一致
             TProtocol protocol = new TBinaryProtocol(transport);
             client = new IThriftTestServcie.Client(protocol);
-            transport.open();
+            // String result = client.invoke("thrift测试参数");
+            // System.out.println("Thrify client result =: " + result);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -85,6 +86,7 @@ public class ClientTest {
     @org.junit.Test
     public void thriftClient() throws TException {
         try {
+            transport.open();
             String result = client.invoke("thrift测试参数");
             System.out.println("Thrify client result =: " + result);
         } catch (Exception e) {
