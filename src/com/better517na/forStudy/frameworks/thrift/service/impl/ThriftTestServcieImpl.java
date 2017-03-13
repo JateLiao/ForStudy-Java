@@ -9,15 +9,8 @@
 package com.better517na.forStudy.frameworks.thrift.service.impl;
 
 import org.apache.thrift.TException;
-import org.apache.thrift.TProcessor;
-import org.apache.thrift.protocol.TBinaryProtocol;
-import org.apache.thrift.server.TServer;
-import org.apache.thrift.server.TSimpleServer;
-import org.apache.thrift.transport.TServerSocket;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.better517na.forStudy.frameworks.thrift.service.IThriftTestServcie;
 import com.better517na.forStudy.frameworks.thrift.service.IThriftTestServcie.Iface;
 
 /**
@@ -36,31 +29,6 @@ import com.better517na.forStudy.frameworks.thrift.service.IThriftTestServcie.Ifa
 public class ThriftTestServcieImpl implements Iface {
 
     /**
-     * 添加字段注释.
-     */
-    @Value("${thrift.port}")
-    private static String serverPort;
-
-    static {
-        System.err.println("thrift服务器启动...");
-        // 启动thrift服务
-        try {
-            TProcessor processor = new IThriftTestServcie.Processor<Iface>(new ThriftTestServcieImpl());
-            
-            // 单线程
-            TServerSocket serverSocket = new TServerSocket(Integer.valueOf(serverPort));
-            TServer.Args args = new TServer.Args(serverSocket);
-            args.processor(processor);
-            args.protocolFactory(new TBinaryProtocol.Factory());
-            
-            TServer server = new TSimpleServer(args);
-            server.serve();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
      * {@inheritDoc}.
      */
     @Override
@@ -68,5 +36,4 @@ public class ThriftTestServcieImpl implements Iface {
         System.out.println("接收参数：" + para);
         return "thrift服务测试成功返回!!!";
     }
-
 }

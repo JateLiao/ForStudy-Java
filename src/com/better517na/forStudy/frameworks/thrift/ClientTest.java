@@ -9,15 +9,20 @@
 package com.better517na.forStudy.frameworks.thrift;
 
 import org.apache.thrift.TException;
+import org.apache.thrift.TProcessor;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocol;
+import org.apache.thrift.server.TServer;
+import org.apache.thrift.server.TThreadPoolServer;
+import org.apache.thrift.transport.TServerSocket;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
-import org.apache.thrift.transport.TTransportException;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 
+import com.better517na.forStudy.frameworks.thrift.server.ThriftServer;
 import com.better517na.forStudy.frameworks.thrift.service.IThriftTestServcie;
+import com.better517na.forStudy.frameworks.thrift.service.IThriftTestServcie.Iface;
+import com.better517na.forStudy.frameworks.thrift.service.impl.ThriftTestServcieImpl;
 
 /**
  * TODO 添加类的一句话简单描述.
@@ -32,12 +37,18 @@ import com.better517na.forStudy.frameworks.thrift.service.IThriftTestServcie;
  * @author tianzhong
  */
 @ContextConfiguration("/com/better517na/config/spring/app-context*.xml")
-public class Test {
+public class ClientTest {
     /**
      * 添加字段注释.
      */
-    @Value("${thrift.port}")
-    private static String serverPort;
+    // @Resource(name = "thriftTestService")
+    // private ThriftTestServcieImpl thriftTestService;
+
+    /**
+     * 添加字段注释.
+     */
+    // @Value("${thrift.port}")
+    private static int serverPort = 9099;
 
     private static IThriftTestServcie.Client client = null;
 
@@ -45,15 +56,18 @@ public class Test {
         // thrift客户端
         TTransport transport = null;
         try {
-            transport = new TSocket("localhost", Integer.valueOf(serverPort), 10000);
+            new Thread() { 
+                public void run() {
+                    new ThriftServer();
+                };
+            }.start();
+            Thread.sleep(5000);
+            transport = new TSocket("localhost", serverPort);
             // 协议要和服务端一致
             TProtocol protocol = new TBinaryProtocol(transport);
-            // TProtocol protocol = new TCompactProtocol(transport);
-            // TProtocol protocol = new TJSONProtocol(transport);
-            // 
             client = new IThriftTestServcie.Client(protocol);
             transport.open();
-        } catch (TTransportException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             if (null != transport) {
@@ -64,12 +78,17 @@ public class Test {
 
     /**
      * TODO 添加方法注释.
-     * @throws TException 
+     * 
+     * @throws TException
      * 
      */
     @org.junit.Test
     public void thriftClient() throws TException {
-        String result = client.invoke("thrift测试参数");
-        System.out.println("Thrify client result =: " + result);
+        try {
+            String result = client.invoke("thrift测试参数");
+            System.out.println("Thrify client result =: " + result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
