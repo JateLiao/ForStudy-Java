@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd  
+    http://code.alibabatech.com/schema/dubbo  
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd 
+    http://cxf.apache.org/jaxws  http://cxf.apache.org/schemas/jaxws.xsd
+  ">
+  
+    <!-- thrift暴露接口 -->
+    <bean id="ThriftServiceCenter"
+        class="com.better517na.JavaServiceRouteHelper.thrift.helper.ThriftServiceCenter">
+        <property name="port">
+            <value>${thrift.port}</value>
+        </property>
+        <property name="processorMap">
+            <map>
+                <entry
+                    key="com.better517na.cLTradeIntegrateService.thrift.ITradeIntegrateThriftService"
+                    value-ref="tradeIntegrateService"></entry>
+            </map>
+        </property>
+    </bean>
+</beans>
