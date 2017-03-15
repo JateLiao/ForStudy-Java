@@ -28,7 +28,7 @@ public class Test1 {
         String a = "asd";
         String b = a.replace("a", "A");
         System.out.println(a);
-        System.out.println(b);
+        System.out.println(b); 
     }
 
     @Test
