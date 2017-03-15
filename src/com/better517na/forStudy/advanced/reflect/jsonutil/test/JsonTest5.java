@@ -52,7 +52,6 @@ public class JsonTest5 {
             e.printStackTrace();
         }
         // Type type = new com.google.common.reflect.TypeToken<List<Map<String, String>>>() { }.getType();
-        
         System.out.println(type);
     }
 
@@ -64,7 +63,7 @@ public class JsonTest5 {
         boost.setBoostId(55);
         boost.setBoostName("boost name");
         Map<String, String> mapObj = new HashMap<>();
-        mapObj.put("kobe", "los angeles");
+        mapObj.put("kobe", "los angeles——");
         mapObj.put("jordan", "chicago");
         boost.setMapObj(mapObj);
         chengduBo.setBoost(boost);
