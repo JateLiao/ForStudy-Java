@@ -126,7 +126,7 @@ public class DESUtil {
     
     public static void main(String[] args) throws Exception {
         try {
-            String key = "qqqq";
+            String key = "498599515@qq.com";
             if (key.length() < 8) {
                 key = "00000000".substring(0, 8 - key.length()).concat(key);
             }
@@ -138,7 +138,7 @@ public class DESUtil {
             // AnAZGrL4x2A\u003d
             System.out.println(encrypt(data, key));
             // System.out.println(decrypt(encrypt(data, key), key));
-            System.out.println(decrypt(data, key));
+            System.out.println(decrypt("yf0GTqZs1h4ltITw9ZmH/A==", key));
         } catch (Exception e) {
             e.printStackTrace();
             if (e instanceof IllegalBlockSizeException && e.getMessage().contains("Input length must be multiple of 8 when decrypting with padded cipher")) {
