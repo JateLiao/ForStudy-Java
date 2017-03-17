@@ -23,6 +23,7 @@ import redis.clients.jedis.JedisPool;
  * @author     tianzhong
  */
 public class RedisClient {
+    private JedisPool pool;
 
     public static void main(String[] args) {
 
