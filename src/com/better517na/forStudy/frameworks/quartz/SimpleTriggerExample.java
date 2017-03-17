@@ -25,8 +25,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class SimpleTriggerExample {
     static {
-        System.out.println("xxxxxxx");
-        System.out.println("xxxxxxx");
-        System.out.println("xxxxxxx");
+        
     }
 }
