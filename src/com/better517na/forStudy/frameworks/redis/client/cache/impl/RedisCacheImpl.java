@@ -58,9 +58,12 @@ public class RedisCacheImpl<V> implements RedisCache<String, V> {
      */ 
     @Override  
     public boolean set(String key, V value, int exprieTime) {
+        if (null == key || "".equals(key)) {
+            return false;
+        }
         try {
             Jedis jedis = client.getRedisSource();
-            jedis.setnx(key, JsonUtils.toJson(value));
+            jedis.setex(key, exprieTime, JsonUtils.toJson(value));
         } catch (Exception e) {
             e.printStackTrace();
         }
