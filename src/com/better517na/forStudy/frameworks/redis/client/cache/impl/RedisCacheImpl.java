@@ -61,13 +61,20 @@ public class RedisCacheImpl<V> implements RedisCache<String, V> {
         if (null == key || "".equals(key)) {
             return false;
         }
+        Jedis jedis = null;
         try {
-            Jedis jedis = client.getRedisSource();
+            jedis = client.getRedisSource();
             jedis.setex(key, exprieTime, JsonUtils.toJson(value));
         } catch (Exception e) {
             e.printStackTrace();
+            if (null != jedis) {
+            }
+        } finally {
+            if (null != jedis) {
+                client.returnResource(jedis);
+            }
         }
-        return false;
+        return true;
     }
     /**
      * {@inheritDoc}.
