@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * TODO 添加类的一句话简单描述.
  * 
- * @author     tianzhong
+ * @author tianzhong
  */
 public interface RedisCache<K, V> {
     /**
@@ -22,7 +22,7 @@ public interface RedisCache<K, V> {
      * @param key
      * @return
      */
-    V get(K key);
+    public V get(K key);
 
     /**
      * 删除redis库中的数据
@@ -30,7 +30,7 @@ public interface RedisCache<K, V> {
      * @param key
      * @return
      */
-    boolean remove(K key);
+    public boolean remove(K key);
 
     /**
      * 设置哈希类型数据到redis 数据库
@@ -42,7 +42,7 @@ public interface RedisCache<K, V> {
      * @param value
      * @return
      */
-    boolean hset(String cacheKey, K key, V value);
+    public boolean hset(String cacheKey, K key, V value);
 
     /**
      * 获取哈希表数据类型的值
@@ -51,7 +51,7 @@ public interface RedisCache<K, V> {
      * @param key
      * @return
      */
-    V hget(String cacheKey, K key);
+    public V hget(String cacheKey, K key);
 
     /**
      * 获取哈希类型的数据
@@ -59,5 +59,5 @@ public interface RedisCache<K, V> {
      * @param cacheKey
      * @return
      */
-    Map<K, V> hget(String cacheKey);
+    public Map<K, V> hget(String cacheKey);
 }
