@@ -23,12 +23,47 @@ import redis.clients.jedis.JedisPool;
  * @author     tianzhong
  */
 public class RedisClient {
+    
     private JedisPool pool;
 
-    public static void main(String[] args) {
-
-        JedisPool jedisPool = null;
-        Jedis jedis = jedisPool.getResource();
-        // jedis.
+    /**
+     * 
+     * TODO 获取连接.
+     */
+    public Jedis getRedisSource() {
+        return pool.getResource();
     }
+    
+    /**
+     * TODO 关闭连接.
+     */
+    public void disconnect(Jedis jedis) {
+        jedis.disconnect();
+    }
+    
+    /**
+     * TODO 添加方法注释.
+     */
+    public void returnResource(Jedis jedis) {
+        pool.returnBrokenResource(jedis);
+    }
+    
+    /**
+     * 设置pool.
+     * 
+     * @return 返回pool
+     */
+    public JedisPool getPool() {
+        return pool;
+    }
+
+    /**
+     * 获取pool.
+     * 
+     * @param pool 要设置的pool
+     */
+    public void setPool(JedisPool pool) {
+        this.pool = pool;
+    }
+
 }
