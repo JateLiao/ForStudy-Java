@@ -27,9 +27,10 @@ import com.better517na.forStudy.advanced.reflect.jsonutil.test.model.BoostBo;
 import com.better517na.forStudy.advanced.reflect.jsonutil.test.model.CityBo;
 import com.better517na.forStudy.advanced.reflect.jsonutil.test.model.Define;
 import com.better517na.forStudy.advanced.reflect.jsonutil.test.model.GenA;
-import com.better517na.forStudy.util.JsonUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import util.JsonUtils;
 
 /**
  * TODO 添加类的一句话简单描述.

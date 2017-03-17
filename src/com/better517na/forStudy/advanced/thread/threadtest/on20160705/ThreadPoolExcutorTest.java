@@ -10,7 +10,7 @@ package com.better517na.forStudy.advanced.thread.threadtest.on20160705;
 
 import java.util.Date;
 
-import com.better517na.forStudy.util.DateUtil;
+import util.DateUtil;
 
 /**
  * TODO 添加类的一句话简单描述.

@@ -60,4 +60,23 @@ public interface RedisCache<K, V> {
      * @return
      */
     public Map<K, V> hget(String cacheKey);
+
+    /**
+     * TODO 添加方法注释.
+     * 
+     * @param key
+     * @param value
+     * @return
+     */
+    public boolean set(String key, V value);
+
+    /**
+     * TODO 添加方法注释.
+     * 
+     * @param key
+     * @param value
+     * @param exprieTime
+     * @return
+     */
+    public boolean set(String key, V value, int exprieTime);
 }

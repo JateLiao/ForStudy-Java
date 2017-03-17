@@ -23,7 +23,8 @@ import com.better517na.forStudy.advanced.reflect.jsonutil.test.model.BoostBo;
 import com.better517na.forStudy.advanced.reflect.jsonutil.test.model.ChengduBo;
 import com.better517na.forStudy.advanced.reflect.jsonutil.test.model.Define;
 import com.better517na.forStudy.advanced.reflect.jsonutil.test.model.GenA;
-import com.better517na.forStudy.util.JsonUtils;
+
+import util.JsonUtils;
 
 /**
  * TODO 添加类的一句话简单描述.

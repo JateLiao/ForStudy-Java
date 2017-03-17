@@ -23,7 +23,8 @@ import com.better517na.forStudy.advanced.reflect.jsonutil.helper.CommonUtil;
 import com.better517na.forStudy.advanced.reflect.jsonutil.model.SingleJSon;
 import com.better517na.forStudy.advanced.reflect.jsonutil.test.model.Define;
 import com.better517na.forStudy.advanced.reflect.jsonutil.test.model.GenA;
-import com.better517na.forStudy.util.JsonUtils;
+
+import util.JsonUtils;
 
 /**
  * TODO 用来测试泛型嵌套的主要测试类.
