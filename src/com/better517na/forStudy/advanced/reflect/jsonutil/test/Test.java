@@ -19,7 +19,8 @@ import java.util.regex.Pattern;
 
 import com.better517na.forStudy.advanced.reflect.jsonutil.model.TypeContainer;
 import com.better517na.forStudy.advanced.reflect.jsonutil.test.JsonTest3.GenALocal;
-import com.better517na.forStudy.util.JsonUtils;
+
+import util.JsonUtils;
 
 /**
  * TODO 添加类的一句话简单描述.

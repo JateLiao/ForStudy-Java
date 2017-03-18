@@ -23,7 +23,8 @@ import com.better517na.forStudy.advanced.reflect.jsonutil.test.model.BoostBo;
 import com.better517na.forStudy.advanced.reflect.jsonutil.test.model.ChengduBo;
 import com.better517na.forStudy.advanced.reflect.jsonutil.test.model.Define;
 import com.better517na.forStudy.advanced.reflect.jsonutil.test.model.GenA;
-import com.better517na.forStudy.util.JsonUtils;
+
+import util.JsonUtils;
 
 /**
  * TODO 添加类的一句话简单描述.
@@ -52,7 +53,6 @@ public class JsonTest5 {
             e.printStackTrace();
         }
         // Type type = new com.google.common.reflect.TypeToken<List<Map<String, String>>>() { }.getType();
-        
         System.out.println(type);
     }
 
@@ -64,7 +64,7 @@ public class JsonTest5 {
         boost.setBoostId(55);
         boost.setBoostName("boost name");
         Map<String, String> mapObj = new HashMap<>();
-        mapObj.put("kobe", "los angeles");
+        mapObj.put("kobe", "los angeles——");
         mapObj.put("jordan", "chicago");
         boost.setMapObj(mapObj);
         chengduBo.setBoost(boost);

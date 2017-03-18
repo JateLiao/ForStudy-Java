@@ -11,6 +11,7 @@ package util;
 import java.security.SecureRandom;
 
 import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
@@ -124,17 +125,25 @@ public class DESUtil {
     }
     
     public static void main(String[] args) throws Exception {
-        String key = "qqqq";
-        if (key.length() < 8) {
-            key = "00000000".substring(0, 8 - key.length()).concat(key);
+        try {
+            String key = "498599515@qq.com";
+            if (key.length() < 8) {
+                key = "00000000".substring(0, 8 - key.length()).concat(key);
+            }
+            System.out.println(key);
+            String data = "qqqq";
+            // FcGdUSmQ0zxZejy+HXTivA==
+            // FcGdUSmQ0zxZejy+HXTivA==
+            // FcGdUSmQ0zxZejy+HXTivA==
+            // AnAZGrL4x2A\u003d
+            System.out.println(encrypt(data, key));
+            // System.out.println(decrypt(encrypt(data, key), key));
+            System.out.println(decrypt("yf0GTqZs1h4ltITw9ZmH/A==", key));
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (e instanceof IllegalBlockSizeException && e.getMessage().contains("Input length must be multiple of 8 when decrypting with padded cipher")) {
+                System.out.println("密文已被解密");
+            }
         }
-        System.out.println(key);
-        String data = "qqqq";
-        // FcGdUSmQ0zxZejy+HXTivA==
-        // FcGdUSmQ0zxZejy+HXTivA==
-        // FcGdUSmQ0zxZejy+HXTivA==
-        // AnAZGrL4x2A\u003d
-        System.out.println(encrypt(data, key));
-        System.out.println(decrypt(encrypt(data, key), key));
     }
 }

@@ -8,6 +8,8 @@
  */
 package com.better517na.forStudy.frameworks.quartz;
 
+import org.springframework.stereotype.Component;
+
 /**
  * TODO 添加类的一句话简单描述.
  * <p>
@@ -20,8 +22,9 @@ package com.better517na.forStudy.frameworks.quartz;
  * 
  * @author tianzhong
  */
+@Component
 public class SimpleTriggerExample {
-    public static void main(String[] args) {
-
+    static {
+        
     }
 }
