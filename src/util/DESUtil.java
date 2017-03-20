@@ -31,6 +31,29 @@ import sun.misc.BASE64Encoder;
  * @author     tianzhong
  */
 public class DESUtil {
+    
+    public static void main(String[] args) throws Exception {
+        try {
+            String key = "1044476843@qq.com";
+            if (key.length() < 8) {
+                key = "00000000".substring(0, 8 - key.length()).concat(key);
+            }
+            System.out.println(key);
+            String data = "qqqq";
+            // FcGdUSmQ0zxZejy+HXTivA==
+            // FcGdUSmQ0zxZejy+HXTivA==
+            // FcGdUSmQ0zxZejy+HXTivA==
+            // AnAZGrL4x2A\u003d
+            // System.out.println(encrypt(data, key));
+            // System.out.println(decrypt(encrypt(data, key), key));
+            System.out.println(decrypt("UA58ewyeYhnSKE3qlOcF9g==", key));
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (e instanceof IllegalBlockSizeException && e.getMessage().contains("Input length must be multiple of 8 when decrypting with padded cipher")) {
+                System.out.println("密文已被解密");
+            }
+        }
+    }
     /**
      * Description 根据键值进行加密
      * 
@@ -122,28 +145,5 @@ public class DESUtil {
         cipher.init(Cipher.DECRYPT_MODE, securekey, sr);
 
         return cipher.doFinal(data);
-    }
-    
-    public static void main(String[] args) throws Exception {
-        try {
-            String key = "498599515@qq.com";
-            if (key.length() < 8) {
-                key = "00000000".substring(0, 8 - key.length()).concat(key);
-            }
-            System.out.println(key);
-            String data = "qqqq";
-            // FcGdUSmQ0zxZejy+HXTivA==
-            // FcGdUSmQ0zxZejy+HXTivA==
-            // FcGdUSmQ0zxZejy+HXTivA==
-            // AnAZGrL4x2A\u003d
-            System.out.println(encrypt(data, key));
-            // System.out.println(decrypt(encrypt(data, key), key));
-            System.out.println(decrypt("yf0GTqZs1h4ltITw9ZmH/A==", key));
-        } catch (Exception e) {
-            e.printStackTrace();
-            if (e instanceof IllegalBlockSizeException && e.getMessage().contains("Input length must be multiple of 8 when decrypting with padded cipher")) {
-                System.out.println("密文已被解密");
-            }
-        }
     }
 }
