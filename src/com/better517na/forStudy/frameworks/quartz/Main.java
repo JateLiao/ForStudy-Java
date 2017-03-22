@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -43,13 +44,23 @@ public class Main {
      */
     @Autowired
     private SimpleTriggerExample xxx;
+    
+    /**
+     * 添加字段注释.
+     */
+    private static String tmpVal;
+
+    @Value("${org.quartz.scheduler.instanceName}")
+    public void setTmpVal(String tmpVal) {
+        Main.tmpVal = tmpVal;
+    }
 
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:/com/better517na/forStudy/frameworks/quartz/config/spring/app-context.xml");
-    
         PropertyPlaceholderConfigurer configurers =  (PropertyPlaceholderConfigurer) context.getBean("propertyConfigurer");
-        
         System.out.println(configurers);
+        
+        System.err.println("" + tmpVal);
     }
     
     @Test
