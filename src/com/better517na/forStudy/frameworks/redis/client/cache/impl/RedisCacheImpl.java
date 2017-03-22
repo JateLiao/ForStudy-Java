@@ -61,7 +61,7 @@ public class RedisCacheImpl<V> implements RedisCache<String, V> {
         } catch (Exception e) {
             e.printStackTrace();
             if (null != jedis) {
-                client.returnResource(jedis);
+                client.returnBrokenResource(jedis);
             }
         } finally {
             if (null != jedis) {
@@ -85,7 +85,7 @@ public class RedisCacheImpl<V> implements RedisCache<String, V> {
         } catch (Exception e) {
             e.printStackTrace();
             if (null != jedis) {
-                client.returnResource(jedis);
+                client.returnBrokenResource(jedis);
             }
         } finally {
             if (null != jedis) {
@@ -110,7 +110,7 @@ public class RedisCacheImpl<V> implements RedisCache<String, V> {
         } catch (Exception e) {
             e.printStackTrace();
             if (null != jedis) {
-                client.returnResource(jedis);
+                client.returnBrokenResource(jedis);
             }
         } finally {
             if (null != jedis) {

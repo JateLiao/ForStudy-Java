@@ -53,4 +53,8 @@ public class RedisClient {
     public void returnResource(Jedis jedis) {
         pool.returnBrokenResource(jedis);
     }
+    
+    public void returnBrokenResource(Jedis jedis) {
+        pool.returnBrokenResource(jedis);
+    }
 }
