@@ -33,15 +33,13 @@ public class RedisCacheImpl<V> implements RedisCache<String, V> {
     @Autowired
     private RedisClient client;
     
-    /** 
-     * 默认过时时间 
-     */  
-    private static final int EXPRIE_TIME =3600*24;   
+    /**
+     * 默认过时时间
+     */
+    private static final int EXPRIE_TIME = 3600 * 24;
+  
     /** 
      * 在redis数据库中插入 key  和value 
-     * @param key 
-     * @param value 
-     * @return 
      */  
     @Override  
     public boolean set(String key, V value) {  
@@ -50,11 +48,6 @@ public class RedisCacheImpl<V> implements RedisCache<String, V> {
     }  
     /**
      * TODO 添加方法注释.
-     * 
-     * @param key
-     * @param value
-     * @param exprieTime
-     * @return
      */ 
     @Override  
     public boolean set(String key, V value, int exprieTime) {
@@ -68,6 +61,7 @@ public class RedisCacheImpl<V> implements RedisCache<String, V> {
         } catch (Exception e) {
             e.printStackTrace();
             if (null != jedis) {
+                client.returnResource(jedis);
             }
         } finally {
             if (null != jedis) {
@@ -80,8 +74,25 @@ public class RedisCacheImpl<V> implements RedisCache<String, V> {
      * {@inheritDoc}.
      */
     @Override
+    @SuppressWarnings("unchecked")
     public V get(String key) {
-        // TODO Auto-generated method stub
+        Jedis jedis = null;
+        
+        try {
+            jedis = client.getRedisSource();
+            String val = jedis.get(key);
+            return (V) val;
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (null != jedis) {
+                client.returnResource(jedis);
+            }
+        } finally {
+            if (null != jedis) {
+                client.returnResource(jedis);
+            }
+        }
+        
         return null;
     }
 
@@ -90,7 +101,22 @@ public class RedisCacheImpl<V> implements RedisCache<String, V> {
      */
     @Override
     public boolean remove(String key) {
-        // TODO Auto-generated method stub
+        Jedis jedis = null;
+        
+        try {
+            jedis = client.getRedisSource();
+            String val = jedis.get(key);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (null != jedis) {
+                client.returnResource(jedis);
+            }
+        } finally {
+            if (null != jedis) {
+                client.returnResource(jedis);
+            }
+        }
         return false;
     }
 

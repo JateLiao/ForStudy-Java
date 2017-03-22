@@ -8,6 +8,10 @@
  */
 package com.better517na.forStudy.frameworks.redis.client;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Component;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -22,8 +26,10 @@ import redis.clients.jedis.JedisPool;
  * 
  * @author     tianzhong
  */
+@Component
 public class RedisClient {
-    
+
+    @Resource(name = "pool")
     private JedisPool pool;
 
     /**
@@ -47,23 +53,4 @@ public class RedisClient {
     public void returnResource(Jedis jedis) {
         pool.returnBrokenResource(jedis);
     }
-    
-    /**
-     * 设置pool.
-     * 
-     * @return 返回pool
-     */
-    public JedisPool getPool() {
-        return pool;
-    }
-
-    /**
-     * 获取pool.
-     * 
-     * @param pool 要设置的pool
-     */
-    public void setPool(JedisPool pool) {
-        this.pool = pool;
-    }
-
 }

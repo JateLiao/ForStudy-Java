@@ -11,8 +11,6 @@ package com.better517na.forStudy.frameworks.redis.client.cache;
 import java.util.Map;
 
 /**
- * TODO 添加类的一句话简单描述.
- * 
  * @author tianzhong
  */
 public interface RedisCache<K, V> {
