@@ -16,9 +16,11 @@
         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
-                <value>file:#{systemProperties['user.dir']}com/better517na/forStudy/frameworks/quartz/quartz.properties</value>
+                <value>file:#{systemProperties['user.dir']}/src/com/better517na/forStudy/frameworks/quartz/quartz.properties</value>
             </list>
         </property>
+        
+		<property name="fileEncoding" value="UTF8"></property>
     </bean>
     <!-- @Component and @Resource -->
     <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />

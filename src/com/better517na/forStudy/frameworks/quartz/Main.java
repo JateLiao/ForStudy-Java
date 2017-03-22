@@ -50,22 +50,29 @@ public class Main {
      */
     private static String tmpVal;
 
-    @Value("${org.quartz.scheduler.instanceName}")
+    @Value("${org.quartz.jobStore.class}")
     public void setTmpVal(String tmpVal) {
         Main.tmpVal = tmpVal;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:/com/better517na/forStudy/frameworks/quartz/config/spring/app-context.xml");
         PropertyPlaceholderConfigurer configurers =  (PropertyPlaceholderConfigurer) context.getBean("propertyConfigurer");
         System.out.println(configurers);
         
-        System.err.println("" + tmpVal);
+        Thread.sleep(500);
+        System.err.println("轱辘：" + tmpVal);
+        System.out.println(configurers.getOrder());
     }
     
     @Test
     public void main() {
-        System.out.println(configurer);
-        System.out.println(xxx);
+        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:/com/better517na/forStudy/frameworks/quartz/config/spring/app-context.xml");
+        PropertyPlaceholderConfigurer configurers =  (PropertyPlaceholderConfigurer) context.getBean("propertyConfigurer");
+        System.out.println(configurers);
+        
+        System.err.println("轱辘：" + tmpVal);
+        
+        System.out.println(xxx); 
     }
 }
