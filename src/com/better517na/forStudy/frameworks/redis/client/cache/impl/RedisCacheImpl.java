@@ -105,7 +105,7 @@ public class RedisCacheImpl<V> implements RedisCache<String, V> {
         
         try {
             jedis = client.getRedisSource();
-            String val = jedis.get(key);
+            jedis.del(key);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
