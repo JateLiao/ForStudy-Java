@@ -51,6 +51,7 @@ public class TypeTest {
         }
     }
     
+    @SuppressWarnings("rawtypes")
     @Test
     public void test() throws NoSuchFieldException, SecurityException {
         System.out.println();

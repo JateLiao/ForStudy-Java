@@ -12,18 +12,10 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 /**
- * TODO 添加类的一句话简单描述.
- * <p>
- * TODO 详细描述
- * <p>
- * TODO 示例代码
- * 
- * <pre>
- * </pre>
- * 
  * @author tianzhong
  */
 public class Test<T> extends ClassA<T> {
+    @SuppressWarnings("unused")
     private T list;
 
     public void testA() throws Exception {
