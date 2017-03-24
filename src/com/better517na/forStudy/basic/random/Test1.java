@@ -42,7 +42,6 @@ public class Test1 {
     
     @Test
     public void randomTest2() {
-        UUID id = new UUID(0, 0);
         for (int i = 0; i < 100; i++) {
             System.out.println(UUID.randomUUID());
         }
