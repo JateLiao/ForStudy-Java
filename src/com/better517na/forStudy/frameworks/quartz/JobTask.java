@@ -11,20 +11,14 @@ package com.better517na.forStudy.frameworks.quartz;
 import org.springframework.stereotype.Component;
 
 /**
- * TODO 添加类的一句话简单描述.
- * <p>
- * TODO 详细描述
- * <p>
- * TODO 示例代码
- * 
- * <pre>
- * </pre>
- * 
  * @author tianzhong
  */
 @Component
-public class SimpleTriggerExample {
-    static {
-        System.out.println("SimpleTriggerExample Init.");
+public class JobTask {
+    public void doBiz() throws Exception {
+        for (int i = 0; i < 5; i++) {
+            System.out.println("do job " + (i + 1));
+            // Thread.sleep(1500);
+        }
     }
 }

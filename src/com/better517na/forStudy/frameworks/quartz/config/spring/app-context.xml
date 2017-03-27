@@ -35,4 +35,24 @@
     <!-- Aspect -->
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
+	<!-- quartz -->
+	<bean id="executor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="${quartz.corePoolSize}" />
+		<property name="maxPoolSize" value="${quartz.maxPoolSize}" />
+		<property name="queueCapacity" value="${quartz.queueCapacity}" />
+	</bean>
+
+	<!-- 业务对象 -->
+	<bean id="bizObject" class="com.better517na.forStudy.frameworks.quartz.JobTask" />
+
+	<!-- 调度业务 -->
+	<bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="bizObject" />
+		<property name="targetMethod" value="doBiz" />
+	</bean>
+	<bean id="trigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="jobDetail" />
+ 		<property name="cronExpression" value="10 0/1 * * * ?" />
+	</bean>
+	
 </beans>
