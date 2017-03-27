@@ -52,7 +52,14 @@
 	</bean>
 	<bean id="trigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="jobDetail" />
- 		<property name="cronExpression" value="10 0/1 * * * ?" />
+ 		<property name="cronExpression" value="${quartz.cronExpression}" />
 	</bean>
-	
+	<!-- 配置调度工厂 -->
+	<bean id="testSchedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="trigger" />
+			</list>
+		</property>
+	</bean>  
 </beans>
