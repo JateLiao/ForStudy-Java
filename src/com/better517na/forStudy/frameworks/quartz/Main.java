@@ -54,10 +54,6 @@ public class Main {
         PropertyPlaceholderConfigurer configurers =  (PropertyPlaceholderConfigurer) context.getBean("propertyConfigurer");
         System.out.println(configurers);
         
-        Thread.sleep(1500);
-        System.err.println("轱辘：" + tmpVal);
-        System.out.println(configurers.getOrder());
-        
         System.out.println("Work Complete!!!");
     }
     
