@@ -15,20 +15,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;
 
 /**
- * TODO 添加类的一句话简单描述.
- * <p>
- * TODO 详细描述
- * <p>
- * TODO 示例代码
- * <pre>
- * </pre>
+ * TODO quartz测试.
  * 
  * @author     tianzhong
  */
-@ContextConfiguration("classpath:/com/better517na/forStudy/frameworks/quartz/config/spring/app-context.xml")
+//@ContextConfiguration("classpath:/com/better517na/forStudy/frameworks/quartz/config/spring/app-context.xml")
+@Component
 public class Main {
     
     
@@ -43,7 +39,7 @@ public class Main {
      */
     private static String tmpVal;
 
-    @Value("${org.quartz.jobStore.class}")
+    @Value("${quartz.jobStore.class}")
     public void setTmpVal(String tmpVal) {
         Main.tmpVal = tmpVal;
     }
@@ -53,7 +49,7 @@ public class Main {
         System.out.println("Work Begin!!!");
         PropertyPlaceholderConfigurer configurers =  (PropertyPlaceholderConfigurer) context.getBean("propertyConfigurer");
         System.out.println(configurers);
-        
+        System.out.println("撒旦：" + tmpVal);
         System.out.println("Work Complete!!!");
     }
     
