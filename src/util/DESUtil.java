@@ -32,6 +32,7 @@ import sun.misc.BASE64Encoder;
  */
 public class DESUtil {
     
+    @SuppressWarnings("unused")
     public static void main(String[] args) throws Exception {
         try {
             String key = "1044476843@qq.com";

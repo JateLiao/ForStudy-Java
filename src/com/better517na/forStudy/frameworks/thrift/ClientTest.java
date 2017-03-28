@@ -9,20 +9,14 @@
 package com.better517na.forStudy.frameworks.thrift;
 
 import org.apache.thrift.TException;
-import org.apache.thrift.TProcessor;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocol;
-import org.apache.thrift.server.TServer;
-import org.apache.thrift.server.TThreadPoolServer;
-import org.apache.thrift.transport.TServerSocket;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
 import org.springframework.test.context.ContextConfiguration;
 
 import com.better517na.forStudy.frameworks.thrift.server.ThriftServer;
 import com.better517na.forStudy.frameworks.thrift.service.IThriftTestServcie;
-import com.better517na.forStudy.frameworks.thrift.service.IThriftTestServcie.Iface;
-import com.better517na.forStudy.frameworks.thrift.service.impl.ThriftTestServcieImpl;
 
 /**
  * TODO 添加类的一句话简单描述.

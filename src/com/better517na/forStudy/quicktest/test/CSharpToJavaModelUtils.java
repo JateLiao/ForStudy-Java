@@ -34,6 +34,7 @@ import java.util.regex.Pattern;
  * 
  * @author yunhai
  */
+@SuppressWarnings({"unused","unchecked","rawtypes"})
 public class CSharpToJavaModelUtils {
     public static void main(String[] args) {
         CSharpToJavaModelUtils.start();
@@ -45,6 +46,7 @@ public class CSharpToJavaModelUtils {
      */
     public static void start() {
         System.out.println("请输入待转换的C#文件（夹）的绝对路径：");
+        @SuppressWarnings("resource")
         Scanner scanner = new Scanner(System.in);
         String path = scanner.nextLine();
         System.out.println("请输入生成Java文件的包名：");
