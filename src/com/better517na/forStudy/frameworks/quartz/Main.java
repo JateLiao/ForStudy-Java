@@ -16,7 +16,6 @@ import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
-import org.springframework.test.context.ContextConfiguration;
 
 /**
  * TODO quartz测试.
@@ -46,11 +45,11 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:/com/better517na/forStudy/frameworks/quartz/config/spring/app-context.xml");
-        System.out.println("Work Begin!!!");
+        System.err.println("Work Begin!!!");
         PropertyPlaceholderConfigurer configurers =  (PropertyPlaceholderConfigurer) context.getBean("propertyConfigurer");
         System.out.println(configurers);
         System.out.println("撒旦：" + tmpVal);
-        System.out.println("Work Complete!!!");
+        System.err.println("Work Complete!!!");
     }
     
     @Test
@@ -59,6 +58,6 @@ public class Main {
         PropertyPlaceholderConfigurer configurers =  (PropertyPlaceholderConfigurer) context.getBean("propertyConfigurer");
         System.out.println(configurers);
         
-        System.err.println("轱辘：" + tmpVal);
+        System.out.println("轱辘：" + tmpVal);
     }
 }
