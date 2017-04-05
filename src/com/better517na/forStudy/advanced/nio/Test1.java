@@ -11,6 +11,8 @@ package com.better517na.forStudy.advanced.nio;
 import java.io.File;
 import java.io.FileInputStream;
 
+import org.junit.Test;
+
 /**
  * TODO 添加类的一句话简单描述.
  * <p>
@@ -31,5 +33,14 @@ public class Test1 {
         in.read(bytes);
 
         in.close();
+    }
+    
+    @Test
+    public void test2(){
+        File file = new File("D:\\Test");
+        File[] files = file.listFiles();
+        for (File f : files) {
+            System.out.println(f.getName());
+        }
     }
 }
