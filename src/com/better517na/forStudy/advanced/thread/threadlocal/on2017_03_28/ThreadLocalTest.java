@@ -41,6 +41,7 @@ public class ThreadLocalTest {
 
         locals.set("xxx");
         for (Runnable runnable : runs) {
+            System.out.println(runnable.getClass());
             System.out.println(locals.get());
         }
     }
