@@ -73,4 +73,14 @@ public class Test3 {
         
         reader.close();
     } 
+    
+    @Test
+    public void test4() throws Exception {
+        String ss = "sasac$$grttr";
+        System.out.println(ss.contains("$$"));
+        String[] arr = ss.split("\\$\\$");
+        for (String string : arr) {
+            System.out.println(string);
+        }
+    } 
 }
