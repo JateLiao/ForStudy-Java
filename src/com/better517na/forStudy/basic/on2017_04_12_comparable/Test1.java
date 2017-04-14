@@ -34,4 +34,10 @@ public class Test1 {
             System.out.println(student.getAge());
         }
     }
+    
+    @Test
+    public void test2(){
+        String sss = "1234";
+        System.out.println(sss.substring(3, 4));
+    }
 }
