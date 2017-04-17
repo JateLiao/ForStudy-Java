@@ -108,13 +108,7 @@ public class Test3 {
     } 
     
     @Test
-    public void test6() throws Exception {
-        String ss = "sasac/grttr";
-        System.out.println(ss.contains("/"));
-        String[] arr = ss.split("/");
-        for (String string : arr) {
-            System.out.println(string);
-        }
+    public void test6() throws Exception { 
 
         Map<String, Object> param = new HashMap<>();
         Map<String, Object> p = new HashMap<>();
