@@ -18,8 +18,12 @@ import java.io.FileReader;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Reader;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Test;
+
+import util.JsonUtils;
 
 /**
  * TODO 添加类的一句话简单描述.
@@ -82,5 +86,43 @@ public class Test3 {
         for (String string : arr) {
             System.out.println(string);
         }
+    } 
+    
+    @Test
+    public void test5() throws Exception {
+        String ss = "sasac/grttr";
+        System.out.println(ss.contains("/"));
+        String[] arr = ss.split("/");
+        for (String string : arr) {
+            System.out.println(string);
+        }
+
+        Map<String, Object> param = new HashMap<>();
+        Map<String, Object> p = new HashMap<>();
+        p.put("vendorHotelInfo", "QIANTAO/H137888");
+        p.put("vendorCityInfo", "ELONG/0101");
+        param.put("data", JsonUtils.toJson(p));
+        param.put("method", "hotel.queryHotelDetail");
+        
+        System.out.println(JsonUtils.toJson(param));
+    } 
+    
+    @Test
+    public void test6() throws Exception {
+        String ss = "sasac/grttr";
+        System.out.println(ss.contains("/"));
+        String[] arr = ss.split("/");
+        for (String string : arr) {
+            System.out.println(string);
+        }
+
+        Map<String, Object> param = new HashMap<>();
+        Map<String, Object> p = new HashMap<>();
+        p.put("vendorHotelInfo", "QIANTAO/H137888");
+        p.put("vendorCityInfo", "ELONG/0101");
+        param.put("data", JsonUtils.toJson(p));
+        param.put("method", "hotel.queryHotelDetail");
+        
+        System.out.println(JsonUtils.toJson(param));
     } 
 }
