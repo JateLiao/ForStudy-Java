@@ -70,14 +70,19 @@ public class ValidateUtil {
         // 验证
         try {
             for (Field fd : res) {
+                fd.setAccessible(true);
                 if (fd.isAnnotationPresent(NotNull.class) && CommonCheckUtils.isEmpty(fd.get(obj))) {
                     Annotation[] ans = fd.getDeclaredAnnotations();
                     for (Annotation annotation : ans) {
                         if (annotation instanceof NotNull) {
-                            return ((NotNull)annotation).name();
+                            result = ((NotNull)annotation).name();
+                            break;
                         }
                     }
-                    // return fd.getAnnotations();
+                }
+                fd.setAccessible(false);
+                if (CommonCheckUtils.isNotEmpty(result)) {
+                    break;
                 }
             }
         } catch (Exception e) {

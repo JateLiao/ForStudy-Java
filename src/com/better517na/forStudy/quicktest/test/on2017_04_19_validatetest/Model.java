@@ -8,6 +8,8 @@
  */
 package com.better517na.forStudy.quicktest.test.on2017_04_19_validatetest;
 
+import com.better517na.annotation.NotNull;
+
 /**
  * TODO 添加类的一句话简单描述.
  * <p>
@@ -21,10 +23,13 @@ package com.better517na.forStudy.quicktest.test.on2017_04_19_validatetest;
  */
 public class Model {
     
+    @NotNull(name="编码")
     private String id;
     
+    @NotNull(name="名称")
     private String name;
     
+    @NotNull(name="描述")
     private String desc;
 
     /**
