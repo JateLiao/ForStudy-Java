@@ -10,7 +10,7 @@ package com.better517na.forStudy.quicktest.test.on2017_04_19_validatetest;
 
 import org.junit.Test;
 
-import util.ValidateUtil;
+import util.CommonCheckUtils;
 
 /**
  * TODO 添加类的一句话简单描述.
@@ -18,20 +18,21 @@ import util.ValidateUtil;
  * TODO 详细描述
  * <p>
  * TODO 示例代码
+ * 
  * <pre>
  * </pre>
  * 
- * @author     tianzhong
+ * @author tianzhong
  */
 public class ValidateTest {
-    
+
     @Test
-    public void test1(){
+    public void test1() {
         Model m = new Model();
         m.setDesc("desc描述");
         m.setId("id编码");
-        
-        System.out.println(ValidateUtil.notNullValidateForName(m));
+
+        System.out.println(CommonCheckUtils.notNullValidateForName(m));
     }
 
 }
