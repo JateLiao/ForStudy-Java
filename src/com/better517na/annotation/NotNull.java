@@ -19,13 +19,14 @@ import java.lang.annotation.Target;
  * TODO 详细描述
  * <p>
  * TODO 示例代码
+ * 
  * <pre>
  * </pre>
  * 
- * @author     tianzhong
+ * @author tianzhong
  */
 @Target(value = {ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NotNull {
-
+    String name() default "";
 }

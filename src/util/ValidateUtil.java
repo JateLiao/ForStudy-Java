@@ -8,6 +8,14 @@
  */
 package util;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import com.better517na.annotation.NotNull;
+
 /**
  * TODO 添加类的一句话简单描述.
  * <p>
@@ -20,5 +28,62 @@ package util;
  * @author     tianzhong
  */
 public class ValidateUtil {
+    
+    public static boolean notNullValidate(Object obj) {
+        boolean result = true;
+       
+        // 获取所有字段，包括父类字段
+        List<Field> res = new ArrayList<>();
+        res.addAll(Arrays.asList(obj.getClass().getDeclaredFields()));
+        Class superClazz = obj.getClass().getSuperclass();
+        while(superClazz != Object.class){
+            res.addAll(Arrays.asList(superClazz.getDeclaredFields()));
+            superClazz = superClazz.getSuperclass();
+        }
+        
+        // 验证
+        try {
+            for (Field fd : res) {
+                if (fd.isAnnotationPresent(NotNull.class) && CommonCheckUtils.isEmpty(fd.get(obj))) {
+                    return false;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } 
+        return result;
+    }
+
+
+    public static String notNullValidateForName(Object obj) {
+        String result = null;
+       
+        // 获取所有字段，包括父类字段
+        List<Field> res = new ArrayList<>();
+        res.addAll(Arrays.asList(obj.getClass().getDeclaredFields()));
+        Class superClazz = obj.getClass().getSuperclass();
+        while(superClazz != Object.class){
+            res.addAll(Arrays.asList(superClazz.getDeclaredFields()));
+            superClazz = superClazz.getSuperclass();
+        }
+        
+        // 验证
+        try {
+            for (Field fd : res) {
+                if (fd.isAnnotationPresent(NotNull.class) && CommonCheckUtils.isEmpty(fd.get(obj))) {
+                    Annotation[] ans = fd.getDeclaredAnnotations();
+                    for (Annotation annotation : ans) {
+                        if (annotation instanceof NotNull) {
+                            return ((NotNull)annotation).name();
+                        }
+                    }
+                    // return fd.getAnnotations();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } 
+        return result;
+    }
 
 }
