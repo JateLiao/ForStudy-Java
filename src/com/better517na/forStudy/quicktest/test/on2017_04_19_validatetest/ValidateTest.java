@@ -28,6 +28,9 @@ public class ValidateTest {
 
     @Test
     public void test1() {
+        Integer ints  = 10;
+        CommonCheckUtils.notNullValidateForName(ints);
+        
         Model m = new Model();
         m.setDesc("desc描述");
         m.setId("id编码");

@@ -7,10 +7,13 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.better517na.annotation.NotNull;
+import com.better517na.forStudy.advanced.reflect.jsonutil.helper.CommonUtil;
+import com.better517na.forStudy.advanced.reflect.jsonutil.helper.ReflectUtil;
 
 /**
  * 常规检查辅助类.
@@ -98,6 +101,34 @@ public final class CommonCheckUtils {
             }
         }
         return true;
+    }
+    
+
+    /**
+     * TODO 添加方法注释.
+     * 
+     * @param o
+     *            校验参数
+     * @return true or false
+     */
+    public static boolean isEmptyAll(Object... o) {
+        if (null == o || o.length == 0) {
+            return true;
+        }
+        for (Object obj : o) {
+            if (null == obj) {
+                return true;
+            }
+            
+            if (obj instanceof String) {
+                return isEmpty((String)obj);
+            } else if (obj instanceof Map) {
+                return isEmpty((Map<?, ?>)obj);
+            } else if (obj instanceof Collection<?>) {
+                return isEmpty((Collection<?>)obj);
+            }
+        }
+        return false;
     }
 
     /**
@@ -272,11 +303,35 @@ public final class CommonCheckUtils {
         try {
             for (Field fd : res) {
                 fd.setAccessible(true);
+                if (CommonUtil.isDefinedModel(fd.getType())) {
+                    String name = notNullValidateForName(fd.get(obj));
+                    if (isNotEmpty(name)) {
+                        return name;
+                    }
+                } else if (CommonUtil.isListType(fd.getType())) {
+                    List<?> list = (List<?>)fd.get(obj);
+                    for (Object o : list) {
+                        String name = notNullValidateForName(o);
+                        if (isNotEmpty(name)) {
+                            return name;
+                        }
+                    }
+                } else if (CommonUtil.isMapType(fd.getType())) {
+                    Map<?, ?> map = (Map<?, ?>) fd.get(obj);
+                    for (Entry<?, ?> e : map.entrySet()) {
+                        String name = notNullValidateForName(e.getValue());
+                        if (isNotEmpty(name)) {
+                            return name;
+                        }
+                    }
+                }
+                
                 if (fd.isAnnotationPresent(NotNull.class) && CommonCheckUtils.isEmpty(fd.get(obj))) {
+                    // result = fd.getType().getAnnotation(NotNull.class).name();
                     Annotation[] ans = fd.getDeclaredAnnotations();
                     for (Annotation annotation : ans) {
                         if (annotation instanceof NotNull) {
-                            result = ((NotNull)annotation).name();
+                            result = ((NotNull) annotation).name();
                             break;
                         }
                     }

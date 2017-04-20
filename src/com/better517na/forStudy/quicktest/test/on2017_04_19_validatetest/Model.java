@@ -8,6 +8,8 @@
  */
 package com.better517na.forStudy.quicktest.test.on2017_04_19_validatetest;
 
+import java.util.List;
+
 import com.better517na.annotation.NotNull;
 
 /**
@@ -31,6 +33,8 @@ public class Model {
     
     @NotNull(name="描述")
     private String desc;
+    
+    private List<E>
 
     /**
      * 设置id.
