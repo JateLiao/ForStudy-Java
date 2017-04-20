@@ -289,7 +289,7 @@ public final class CommonCheckUtils {
 
     public static String notNullValidateForName(Object obj) {
         String result = null;
-       
+        
         // 获取所有字段，包括父类字段
         List<Field> res = new ArrayList<>();
         res.addAll(Arrays.asList(obj.getClass().getDeclaredFields()));
@@ -303,6 +303,9 @@ public final class CommonCheckUtils {
         try {
             for (Field fd : res) {
                 fd.setAccessible(true);
+                if (!fd.isAnnotationPresent(NotNull.class)) {
+                    continue;
+                } 
                 if (CommonUtil.isDefinedModel(fd.getType())) {
                     String name = notNullValidateForName(fd.get(obj));
                     if (isNotEmpty(name)) {
@@ -326,7 +329,7 @@ public final class CommonCheckUtils {
                     }
                 }
                 
-                if (fd.isAnnotationPresent(NotNull.class) && CommonCheckUtils.isEmpty(fd.get(obj))) {
+                if (CommonCheckUtils.isEmpty(fd.get(obj))) {
                     // result = fd.getType().getAnnotation(NotNull.class).name();
                     Annotation[] ans = fd.getDeclaredAnnotations();
                     for (Annotation annotation : ans) {
