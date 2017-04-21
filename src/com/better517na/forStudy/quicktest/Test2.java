@@ -9,6 +9,7 @@
 package com.better517na.forStudy.quicktest;
 
 import org.junit.Test;
+import org.springframework.beans.BeanUtils;
 
 /**
  * TODO 添加类的一句话简单描述.
@@ -83,5 +84,10 @@ public class Test2 {
             System.out.println();
         }
     
+    }
+    
+    @Test
+    public void test3(){
+        BeanUtils.copyProperties(null, null);
     }
 }
