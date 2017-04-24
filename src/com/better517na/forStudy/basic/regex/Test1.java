@@ -27,4 +27,19 @@ public class Test1 {
             System.out.println(str);
         }
     }
+    
+    @Test
+    public void test2(){
+        String str = "    public ssss";
+        if (str.startsWith("\\s*public")) {
+            System.out.println(str);
+        }
+        
+//        Pattern p = Pattern.compile("\\s*public");
+//        Matcher m = p.matcher(str);
+//        if (m.find()) {
+//            System.out.println(str);
+//        }
+    }
+    
 }
