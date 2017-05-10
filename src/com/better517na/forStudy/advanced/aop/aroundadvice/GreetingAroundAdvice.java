@@ -22,8 +22,8 @@ public class GreetingAroundAdvice implements MethodInterceptor {
      * {@inheritDoc}.
      */
     @Override
-    public Object intercept(Object paramObject, Method paramMethod, Object[] paramArrayOfObject, MethodProxy paramMethodProxy) throws Throwable {
-        // TODO Auto-generated method stub
+    public Object intercept(Object paramObject, Method paramMethod, Object[] paramArrayOfObject, 
+            MethodProxy paramMethodProxy) throws Throwable {
         return null;
     }
 
