@@ -14,8 +14,6 @@ import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
 
 /**
- * TODO 添加类的一句话简单描述.
- * 
  * @author tianzhong
  */
 public class GreetingAroundAdvice implements MethodInterceptor {
