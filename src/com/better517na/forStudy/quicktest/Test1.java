@@ -106,4 +106,10 @@ public class Test1 {
             System.out.println(s / TimeUnit.HOURS.toMillis(1));
         }
     }
+    
+    @Test
+    public void test8()  {
+        Object obj = new String("123");
+        System.out.println(obj);
+    }
 }
