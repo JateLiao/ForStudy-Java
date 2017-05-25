@@ -60,4 +60,11 @@ public class Test4 {
         System.out.println(json);
     }
 
+    @Test
+    public void test3() {
+        String val = "保定市北市区";
+        String key = val.substring(0, val.indexOf("市")) + "-" + val.substring(val.indexOf("市") + 1, val.length());
+        System.out.println(key);
+    }
+
 }
