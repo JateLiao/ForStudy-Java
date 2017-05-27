@@ -11,6 +11,7 @@ package com.better517na.forStudy.quicktest;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import org.junit.Test;
 
@@ -62,9 +63,8 @@ public class Test4 {
 
     @Test
     public void test3() {
-        String val = "保定市北市区";
-        String key = val.substring(0, val.indexOf("市")) + "-" + val.substring(val.indexOf("市") + 1, val.length());
-        System.out.println(key);
+        String val = "太原市市万柏林区";
+        Pattern p = Pattern.compile("市+?");
     }
 
 }
