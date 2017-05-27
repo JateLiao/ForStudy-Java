@@ -11,6 +11,7 @@ package com.better517na.forStudy.quicktest;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.junit.Test;
@@ -65,6 +66,16 @@ public class Test4 {
     public void test3() {
         String val = "太原市市万柏林区";
         Pattern p = Pattern.compile("市+?");
+    }
+
+    @Test
+    public void test4() {
+        String val = "1张1.5米大床（或1张1.8米大床）/1张1.5米的大床（或1张1.8米的大床）";
+        Pattern p = Pattern.compile("[0-9]\\.?[0-9]{0,2}?米");
+        Matcher m = p.matcher(val);
+        while (m.find()) {
+            System.out.println(m.group());
+        }
     }
 
 }
