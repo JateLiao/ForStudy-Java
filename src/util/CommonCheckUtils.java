@@ -20,6 +20,7 @@ import com.better517na.forStudy.advanced.reflect.jsonutil.helper.CommonUtil;
  * @author xuanwei
  *
  */
+@SuppressWarnings("rawtypes")
 public final class CommonCheckUtils {
     /**
      * 构造函数.
