@@ -73,8 +73,8 @@ public class Test4 {
     } 
  
     @Test
+    @SuppressWarnings("unused")
     public void test3() {
-        @SuppressWarnings("unused")
         String val = "太原市市万柏林区";
         Pattern p = Pattern.compile("市+?");
         
