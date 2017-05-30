@@ -63,6 +63,17 @@ public class Test4 {
     }
 
     @Test
+    public void test2() {
+        String s = "成都成华区什么区";
+
+        String info = s.substring(0, 2);
+        System.out.println(info);
+        
+        System.out.println(info + "-" + s.substring(2, s.length()));
+        
+    } 
+ 
+    @Test
     public void test3() {
         String val = "太原市市万柏林区";
         Pattern p = Pattern.compile("市+?");
@@ -77,5 +88,4 @@ public class Test4 {
             System.out.println(m.group());
         }
     }
-
 }
