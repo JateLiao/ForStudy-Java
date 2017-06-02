@@ -109,7 +109,6 @@ public class Test1 {
     
     @Test
     public void test8()  {
-        Object obj = new String("123");
-        System.out.println(obj);
+        System.out.println(TimeUnit.MINUTES.toMillis(143780));
     }
 }
