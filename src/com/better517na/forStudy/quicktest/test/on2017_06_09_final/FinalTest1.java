@@ -8,6 +8,9 @@
  */
 package com.better517na.forStudy.quicktest.test.on2017_06_09_final;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * TODO 添加类的一句话简单描述.
  * <p>
@@ -20,5 +23,22 @@ package com.better517na.forStudy.quicktest.test.on2017_06_09_final;
  * @author     tianzhong
  */
 public class FinalTest1 {
+    
+    public static final InnerTest inner = new InnerTest();
+    
+    public void finalTest(){
+        // inner = new InnerTest();
+        
+        inner.cox = 5;
+        inner.sin = "sin";
+        inner.vals = new ArrayList<>();
+    }
+}
 
+class InnerTest {
+    Integer cox;
+    
+    String sin;
+    
+    List<String> vals;
 }
