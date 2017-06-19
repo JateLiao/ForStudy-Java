@@ -19,4 +19,16 @@ public class GCDGettor {
     public static void main(String[] args) {
 
     }
+    
+    /**
+     * TODO 求最大公非约束.
+     * 
+     * @param param .
+     * @return .
+     */
+    public int getGCDNum(int...param) {
+        int res = 0;
+        
+        return res;
+    }
 }
