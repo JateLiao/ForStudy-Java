@@ -17,7 +17,7 @@ package com.better517na.forStudy.littleprogram;
  */
 public class GCDGettor {
     public static void main(String[] args) {
-
+        
     }
     
     /**

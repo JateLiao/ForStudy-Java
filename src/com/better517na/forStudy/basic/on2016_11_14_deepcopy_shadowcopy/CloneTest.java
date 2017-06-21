@@ -14,12 +14,10 @@ import org.junit.Test;
 
 /**
  * TODO 添加类的一句话简单描述.
- * <p>
- * TODO 详细描述
- * <p>
- * TODO 示例代码
- * <pre>
- * </pre>
+ * 
+ * 浅复制：只拷贝基本类型，引用类型只是创建了一个指向原的引用。
+ * 
+ * 深复制：都拷贝。
  * 
  * @author     tianzhong
  */
