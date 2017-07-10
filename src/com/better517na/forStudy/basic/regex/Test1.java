@@ -42,4 +42,13 @@ public class Test1 {
 //        }
     }
     
+    @Test
+    public void test3(){
+        String str = "ddpub\\lic s/sss";
+        System.out.println(str);
+        for (String ss : str.split("\\\\")) {
+            System.out.println(ss);
+        }
+    }
+    
 }

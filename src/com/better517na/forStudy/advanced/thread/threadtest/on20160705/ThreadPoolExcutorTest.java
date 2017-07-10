@@ -9,6 +9,9 @@
 package com.better517na.forStudy.advanced.thread.threadtest.on20160705;
 
 import java.util.Date;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import util.DateUtil;
 
@@ -26,7 +29,7 @@ import util.DateUtil;
  */
 public class ThreadPoolExcutorTest {
     public static void main(String[] args) {
-        // ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 10, 100, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<Runnable>(5));
+         ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 10, 100, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<Runnable>(5));
         //
         // ExecutorService pool1 = Executors.newCachedThreadPool();
         // ExecutorService pool2 = Executors.newFixedThreadPool(5);
