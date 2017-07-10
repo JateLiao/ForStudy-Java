@@ -15,15 +15,6 @@ import java.nio.channels.FileChannel;
 import com.better517na.forStudy.advanced.nio.channel.FileChannelTest;
 
 /**
- * TODO 添加类的一句话简单描述.
- * <p>
- * TODO 详细描述
- * <p>
- * TODO 示例代码
- * 
- * <pre>
- * </pre>
- * 
  * @author tianzhong
  */
 @SuppressWarnings({"unused", "resource"})
