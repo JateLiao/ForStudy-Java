@@ -35,11 +35,11 @@ public class Test1 {
             System.out.println(str);
         }
         
-//        Pattern p = Pattern.compile("\\s*public");
-//        Matcher m = p.matcher(str);
-//        if (m.find()) {
-//            System.out.println(str);
-//        }
+        // Pattern p = Pattern.compile("\\s*public");
+        // Matcher m = p.matcher(str);
+        // if (m.find()) {
+        // System.out.println(str);
+        // }
     }
     
     @Test
