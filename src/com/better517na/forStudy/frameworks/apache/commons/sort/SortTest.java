@@ -11,9 +11,9 @@ package com.better517na.forStudy.frameworks.apache.commons.sort;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 import org.apache.commons.beanutils.BeanComparator;
-import org.apache.commons.collections.ComparatorUtils;
 import org.apache.commons.collections.comparators.ComparableComparator;
 import org.apache.commons.collections.comparators.ComparatorChain;
 
@@ -36,11 +36,12 @@ public class SortTest {
      * 
      * @param args
      */
+    @SuppressWarnings("unchecked")
     public static void main(String[] args) {
-        Comparator<Model> cmp = ComparableComparator.getInstance();
+        Comparator<?> cmp = ComparableComparator.getInstance();
         // cmp = ComparatorUtils.reversedComparator(cmp);
         
-        ArrayList<Model> list = new ArrayList<>();
+        List<Model> list = new ArrayList<>();
         list.add(new Model("2017-08-03 16:55:51"));
         list.add(new Model("2017-08-03 16:55:21"));
         list.add(new Model("2017-08-03 16:55:41"));
@@ -49,7 +50,7 @@ public class SortTest {
         
         System.out.println("Before Sort: " + list);
         
-        ArrayList<Object> sortFileds = new ArrayList<>();
+        List<Object> sortFileds = new ArrayList<>();
         sortFileds.add(new BeanComparator("date", cmp));
         
         // 创建一个排序链  
