@@ -8,8 +8,6 @@
  */
 package com.better517na.forStudy.frameworks.apache.commons.beanutils;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.apache.commons.beanutils.BeanUtils;
 import org.junit.Test;
 
@@ -31,11 +29,14 @@ public class BeaUtilsTest {
         TmpClass tmp = new  TmpClass();
         tmp.setTmpInfo("tmpInfo");
         BeanModel moden = new BeanModel("id", "name", 24, 183, "desc", tmp);
+        System.out.println(moden.toString());
         
         // 被克隆的Bean必须具备一个无参构造方法（默认的构造方法也可以，但是在具备有参构造方法是必须同时具备无参构造方法）
+        // 该方法是浅复制
         BeanModel newModel = (BeanModel) BeanUtils.cloneBean(moden);
-        
         System.out.println(newModel.toString());
-    
+        
+        moden.getTmp().setTmpInfo("new tmp info...");
+        System.out.println(newModel.getTmp().getTmpInfo());
     }
 }

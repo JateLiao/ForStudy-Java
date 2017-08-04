@@ -42,8 +42,9 @@ public class BeanModel {
      */
     @Override
     public String toString() {
+        System.out.println(super.toString());
         return this.id + ", " + this.name + ", " + this.age + ", " + this.height + ", " 
-                + this.desc + "  (TmpInfo: " + (null != this.getTmp() ? this.getTmp().getTmpInfo() : "null") + ")";
+                + this.desc + "  (TmpInfo: " + (null != this.getTmp() ? this.getTmp().toString() : "null") + ")";
     }
     
     /**
