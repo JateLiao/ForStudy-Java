@@ -35,11 +35,20 @@ public class Test1 {
             System.out.println(str);
         }
         
-//        Pattern p = Pattern.compile("\\s*public");
-//        Matcher m = p.matcher(str);
-//        if (m.find()) {
-//            System.out.println(str);
-//        }
+        // Pattern p = Pattern.compile("\\s*public");
+        // Matcher m = p.matcher(str);
+        // if (m.find()) {
+        // System.out.println(str);
+        // }
+    }
+    
+    @Test
+    public void test3(){
+        String str = "ddpub\\lic s/sss";
+        System.out.println(str);
+        for (String ss : str.split("\\\\")) {
+            System.out.println(ss);
+        }
     }
     
 }
