@@ -12,16 +12,13 @@ import java.util.Date;
 import java.util.Locale;
 
 import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.junit.Test;
 
 /**
- * TODO 添加类的一句话简单描述.
- * <p>
- * TODO 详细描述
- * <p>
- * TODO 示例代码
- * <pre>
- * </pre>
+ * Joda Time 是一个java时间工具集合框架。
+ * 比之于JDK原生繁琐和性能底下线程不安全的Calendar和Date两个API，
+ * Joda Time代码更简洁，性能更高效，支持西线程安全（DateFormat）。
  * 
  * @author     tianzhong
  */
@@ -47,6 +44,14 @@ public class JodaTimeTest {
         System.out.println(anyDate.toString());
         System.out.println(anyDate.toString("yyyy-MM-dd HH:mm:ss"));
         System.out.println(anyDate.toString("yyyy年MM月dd日HH点mm分ss秒", Locale.SIMPLIFIED_CHINESE));
-        
+    }
+    
+    @Test
+    public void test3(){
+        /*计算两个日期之间的时间差*/
+        DateTime anyDate1 = new DateTime(2017, 8, 15, 14, 25, 32); // 2017-08-14 14:25:32
+        DateTime anyDate2 = new DateTime(2016, 11, 15, 9, 48, 18); // 2016-11-15 09:48:15
+        Days days = Days.daysBetween(anyDate2, anyDate1);
+        System.out.println("Days Between: " + days.getDays()); // 为正：表示在第一个时间之前，反之则在第一个时间之后
     }
 }
