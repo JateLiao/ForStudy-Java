@@ -162,6 +162,6 @@ public class Test2 {
                 new TypeContainer(),
                 Define.class);
         
-        System.out.println(tcTmp);
+        System.out.println();
     }
 }
