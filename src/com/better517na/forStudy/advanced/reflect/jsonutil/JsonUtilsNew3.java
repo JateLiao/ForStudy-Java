@@ -40,7 +40,7 @@ public class JsonUtilsNew3 {
     /**
      * 日期格式化.
      */
-    private static DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static final DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
  
     
     /*********************************************** 分 割 线 : Model -> Json  ****************************************************************************************************************/
