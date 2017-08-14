@@ -21,6 +21,7 @@ import org.junit.Test;
 import com.better517na.forStudy.advanced.reflect.jsonutil.JsonUtilsNew3;
 import com.better517na.forStudy.advanced.reflect.jsonutil.helper.CommonUtil;
 import com.better517na.forStudy.advanced.reflect.jsonutil.model.SingleJSon;
+import com.better517na.forStudy.advanced.reflect.jsonutil.model.TypeContainer;
 import com.better517na.forStudy.advanced.reflect.jsonutil.test.model.Define;
 import com.better517na.forStudy.advanced.reflect.jsonutil.test.model.GenA;
 
@@ -149,5 +150,18 @@ public class Test2 {
         // System.out.pri ntln("ss: " + ss);
         String sss = CommonUtil.getFieldStr4Basic(s, "MinPrice", false);
         System.out.println("sss: " + sss);
+    }
+    
+    @Test
+    public void tess2(){
+        // String, Define, GenA<List<Define>, Map<String, Define>, Define>
+        TypeContainer tcTmp = new TypeContainer(
+                GenA.class, 
+                Define.class, 
+                new TypeContainer(List.class, Define.class),
+                new TypeContainer(),
+                Define.class);
+        
+        System.out.println(tcTmp);
     }
 }
