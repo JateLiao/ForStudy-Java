@@ -33,6 +33,8 @@
     <!-- Aspect -->
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
+
+	<!-- Redis Config -->
 	<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
 		<property name="maxActive" value="${redis.maxActive}"></property>
 		<property name="maxIdle" value="${redis.maxIdle}"></property>
@@ -51,4 +53,5 @@
 	<bean id="redisClient" class="com.better517na.forStudy.frameworks.redis.client.RedisClient">
 		<property name="pool" ref="pool" />
 	</bean>  
+	
 </beans>
