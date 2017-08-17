@@ -28,6 +28,9 @@ import redis.clients.jedis.JedisPool;
  */
 @Component
 public class RedisClient {
+    // static{
+    // System.out.println(">>>>>>Redis Client Run!");
+    // }
 
     @Resource(name = "pool")
     private JedisPool pool;
