@@ -20,6 +20,8 @@ import com.better517na.forStudy.advanced.reflect.jsonutil.JsonUtilsNew3;
 import com.better517na.forStudy.frameworks.redis.client.cache.RedisCache;
 import com.better517na.forStudy.frameworks.redis.entity.UserEntity;
 
+import redis.clients.jedis.Jedis;
+
 /**
  * TODO 添加类的一句话简单描述.
  * @author     tianzhong
@@ -43,6 +45,7 @@ public class UserServiceTest {
     @Resource
     private RedisCache<String, String> caches;
     
+    @SuppressWarnings("unchecked")
     @Before
     public void before(){
         System.out.println("before.........");
@@ -55,11 +58,17 @@ public class UserServiceTest {
     public void userServiceTest() {
         System.out.println("contetxt: " + context.getDisplayName());
         
+        // Jedis jds = new Jedis("192.168.1.113", 6379);
+        // jds.connect();
+        
         UserEntity user = new UserEntity();
         user.setUaserName("kobe bryant");
         user.setUserNo("24");
-        caches.set(REDIS_KEY + user.getUserNo(), JsonUtilsNew3.toJson(user));
-        System.out.println(caches);
+        String key = REDIS_KEY + user.getUserNo();
+        caches.set(key, JsonUtilsNew3.toJson(user));
+        
+        String redisValue = caches.get(key);
+        System.out.println(redisValue);
     }
 
 }
