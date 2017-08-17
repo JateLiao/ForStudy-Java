@@ -20,10 +20,11 @@ import com.better517na.forStudy.advanced.reflect.jsonutil.JsonUtilsNew3;
 import com.better517na.forStudy.frameworks.redis.client.cache.RedisCache;
 import com.better517na.forStudy.frameworks.redis.entity.UserEntity;
 
-import redis.clients.jedis.Jedis;
-
 /**
- * TODO 添加类的一句话简单描述.
+ * redis测试代码：
+ * 1.linux（centos6.6）环境下redis的安装；
+ * 2.redis的set，get，remove等基本操作；
+ * 
  * @author     tianzhong
  */
 @ContextConfiguration("classpath:/com/better517na/forStudy/frameworks/redis/config/spring/app-context.xml")
