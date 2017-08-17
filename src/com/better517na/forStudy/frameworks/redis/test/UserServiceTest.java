@@ -65,10 +65,15 @@ public class UserServiceTest {
         user.setUaserName("kobe bryant");
         user.setUserNo("24");
         String key = REDIS_KEY + user.getUserNo();
+        System.out.println("The key: " + key);
         caches.set(key, JsonUtilsNew3.toJson(user));
         
         String redisValue = caches.get(key);
         System.out.println(redisValue);
+        
+        caches.remove(key);
+        redisValue = caches.get(key);
+        System.out.println("Get after remove: " + redisValue);
     }
 
 }
