@@ -8,6 +8,8 @@
  */
 package com.better517na.forStudy.frameworks.rabbitmq.producer;
 
+import java.io.IOException;
+import java.net.InetAddress;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,16 +22,11 @@ import com.rabbitmq.client.AMQP.BasicProperties;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.ReturnListener;
+import com.rabbitmq.client.ShutdownListener;
+import com.rabbitmq.client.ShutdownSignalException;
 
 /**
- * TODO 添加类的一句话简单描述.
- * <p>
- * TODO 详细描述
- * <p>
- * TODO 示例代码
- * <pre>
- * </pre>
- * 
  * @author     tianzhong
  */
 public class ProducerTest {
@@ -53,12 +50,35 @@ public class ProducerTest {
 
             // 创建一个连接
             Connection conn = factory.newConnection();
+            if (!conn.isOpen()) {
+                System.out.println("连接不能被创建!!!");
+                throw new Exception("连接不能被创建!!!");
+            }
             System.out.println("连接创建成功: " + conn.getServerProperties().toString());
 
             // 创建一个通道
             Channel channel = conn.createChannel();
             System.out.println("通道创建成功: " + channel.toString());
 
+            channel.addReturnListener(new ReturnListener() {
+                
+                @Override
+                public void handleReturn(int arg0, String arg1, String arg2, String arg3, BasicProperties arg4, byte[] arg5) throws IOException {
+                    System.out.println("请确保路由是否正确");
+                }
+            });
+            channel.addShutdownListener(new ShutdownListener() {
+                
+                @Override
+                public void shutdownCompleted(ShutdownSignalException shutdownsignalexception) {
+                    System.out.println("通道被关闭!!!");
+                }
+            });
+            if (!channel.isOpen()) {
+                System.out.println("通道被关闭原因：" + channel.getCloseReason());
+                throw new Exception("通道已被关闭!!!");
+            }
+            
             // 声明一个队列
             channel.queueDeclare(Statics.QUEUE_NAME, true, false, false, null);
             /*
@@ -72,24 +92,11 @@ public class ProducerTest {
             String message = "Hello RabbitMQ For TianZhong Test.";
             Map<String, Object> headers = new HashMap<>();
             headers.put("sent_time", new DateTime().toString("yyyy-MM-dd HH:mm:ss"));
-            headers.put("producer_pid", String.valueOf(Thread.currentThread().getId()));
+            headers.put("producer_pid", String.valueOf(Thread.currentThread().getName()));
             headers.put("traker_id", "traker_id");
-            headers.put("producer_addr", "");
-            BasicProperties properties = new BasicProperties(
-                    "text/plain", 
-                    "utf-8", 
-                    headers, 
-                    2, 
-                    1,
-                    "correlationId", 
-                    "replyTo", 
-                    "expiration", 
-                    "messageId", 
-                    new Date(), 
-                    "type", 
-                    "userId", 
-                    "appId", 
-                    "clusterId");
+            headers.put("producer_addr", InetAddress.getLocalHost().getHostAddress());
+            BasicProperties properties = new BasicProperties("text/plain", "utf-8", headers, 2, 1, "correlationId", "replyTo", "expiration", "messageId", new Date(), 
+                    "type", "userId", "appId","clusterId");
             // 发送消息到队列中
             channel.basicPublish(Statics.EXCHANGE, Statics.ROUTE_KEY, properties, message.getBytes("UTF-8"));
             /*basicPublish:
@@ -101,8 +108,12 @@ public class ProducerTest {
             System.out.println("Producer Send: " + message);
 
             // 关闭通道和连接
-            channel.close();
-            conn.close();
+            if (null != channel && channel.isOpen()) {
+                channel.close();
+            }
+            if (null != conn && conn.isOpen()) {
+                conn.close();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
