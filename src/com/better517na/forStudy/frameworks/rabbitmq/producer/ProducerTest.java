@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.joda.time.DateTime;
-import org.junit.Test;
 
 import com.better517na.forStudy.frameworks.rabbitmq.Statics;
 import com.rabbitmq.client.AMQP.BasicProperties;
@@ -27,21 +26,16 @@ import com.rabbitmq.client.ShutdownListener;
 import com.rabbitmq.client.ShutdownSignalException;
 
 /**
- * @author     tianzhong
+ * @author tianzhong
  */
 public class ProducerTest {
-    
-    // @Before
-    // public void connection
-
-    @Test
-    public void producer() throws Exception{
+    public static void main(String[] args) {
         System.out.println("生产者线程启动......");
-        
+
         try {
             // 创建连接工厂
             ConnectionFactory factory = new ConnectionFactory();
-            factory.setHost("192.168.1.34"); // host
+            factory.setHost("192.168.1.116"); // host
             factory.setVirtualHost(Statics.VHOST); // virtual host
             factory.setUsername(Statics.USERNAME); // username
             factory.setPassword(Statics.PASSWORD); // pwd
@@ -61,51 +55,51 @@ public class ProducerTest {
             System.out.println("通道创建成功: " + channel.toString());
 
             channel.addReturnListener(new ReturnListener() {
-                
                 @Override
                 public void handleReturn(int arg0, String arg1, String arg2, String arg3, BasicProperties arg4, byte[] arg5) throws IOException {
                     System.out.println("请确保路由是否正确");
                 }
             });
             channel.addShutdownListener(new ShutdownListener() {
-                
                 @Override
                 public void shutdownCompleted(ShutdownSignalException shutdownsignalexception) {
-                    System.out.println("通道被关闭!!!");
+                    System.out.println("通道已关闭!!!");
                 }
             });
             if (!channel.isOpen()) {
                 System.out.println("通道被关闭原因：" + channel.getCloseReason());
-                throw new Exception("通道已被关闭!!!");
+                throw new Exception("通道已关闭!!!");
             }
-            
+
             // 声明一个队列
             channel.queueDeclare(Statics.QUEUE_NAME, true, false, false, null);
             /*
-             * queueDeclare:
-             * 第一个参数表示队列名称、
-             * 第二个参数为是否持久化（true表示是，队列将在服务器重启时生存）、
-             * 第三个参数为是否是独占队列（创建者可以使用的私有队列，断开后自动删除）、
-             * 第四个参数为当所有消费者客户端连接断开时是否自动删除队列、
+             * queueDeclare: 
+             * 第一个参数表示队列名称、 
+             * 第二个参数为是否持久化（true表示是，队列将在服务器重启时生存）、 
+             * 第三个参数为是否是独占队列（创建者可以使用的私有队列，断开后自动删除）、 
+             * 第四个参数为当所有消费者客户端连接断开时是否自动删除队列、 
              * 第五个参数为队列的其他参数
-             * */
+             */
+            long timestamp = new Date().getTime();
             String message = "Hello RabbitMQ For TianZhong Test.";
             Map<String, Object> headers = new HashMap<>();
             headers.put("sent_time", new DateTime().toString("yyyy-MM-dd HH:mm:ss"));
             headers.put("producer_pid", String.valueOf(Thread.currentThread().getName()));
             headers.put("traker_id", "traker_id");
             headers.put("producer_addr", InetAddress.getLocalHost().getHostAddress());
-            BasicProperties properties = new BasicProperties("text/plain", "utf-8", headers, 2, 1, "correlationId", "replyTo", "expiration", "messageId", new Date(), 
-                    "type", "userId", "appId","clusterId");
+            BasicProperties properties = new BasicProperties("text/plain", "utf-8", headers, 2, 1, "correlationId" + timestamp, "replyTo" + timestamp, 
+                    "3000", "messageId" + timestamp, new Date(), "type", Statics.USERNAME, "appId" + timestamp, "clusterId");
             // 发送消息到队列中
             channel.basicPublish(Statics.EXCHANGE, Statics.ROUTE_KEY, properties, message.getBytes("UTF-8"));
-            /*basicPublish:
-             * 第一个参数为交换机名称、
-             * 第二个参数为队列映射的路由key、
-             * 第三个参数为消息的其他属性、
+            /*
+             * basicPublish: 
+             * 第一个参数为交换机名称、 
+             * 第二个参数为队列映射的路由key、 
+             * 第三个参数为消息的其他属性、 
              * 第四个参数为发送信息的主体
              */
-            System.out.println("Producer Send: " + message);
+            System.out.println("发布消息内容: " + message);
 
             // 关闭通道和连接
             if (null != channel && channel.isOpen()) {
@@ -117,7 +111,7 @@ public class ProducerTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         System.out.println("生产完毕，测试结束!");
     }
 }
