@@ -8,6 +8,10 @@
  */
 package com.better517na.forStudy.basic.bigdecimal;
 
+import java.math.BigDecimal;
+
+import org.junit.Test;
+
 /**
  * TODO 添加类的一句话简单描述.
  * <p>
@@ -26,5 +30,10 @@ public class Test1 {
         System.out.println(1.0 - 0.42);
         System.out.println(4.015 * 1000);
         System.out.println(3.301 / 1000);
+    }
+    
+    @Test
+    public void test1(){
+        System.out.println(new BigDecimal("17").divide(new BigDecimal("3"), 2, BigDecimal.ROUND_HALF_UP));
     }
 }

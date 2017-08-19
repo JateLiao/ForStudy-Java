@@ -50,8 +50,8 @@
 		<constructor-arg index="3" value="${redis.timeout}" />
 	</bean>
 	<!-- cleint -->
-	<bean id="redisClient" class="com.better517na.forStudy.frameworks.redis.client.RedisClient">
+	<!-- <bean id="redisClient" class="com.better517na.forStudy.frameworks.redis.client.RedisClient">
 		<property name="pool" ref="pool" />
-	</bean>  
+	</bean>   -->
 	
 </beans>
