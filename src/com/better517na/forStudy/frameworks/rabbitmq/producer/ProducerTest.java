@@ -35,7 +35,7 @@ public class ProducerTest {
         try {
             // 创建连接工厂
             ConnectionFactory factory = new ConnectionFactory();
-            factory.setHost("192.168.1.116"); // host
+            factory.setHost("192.168.34.130"); // host
             factory.setVirtualHost(Statics.VHOST); // virtual host
             factory.setUsername(Statics.USERNAME); // username
             factory.setPassword(Statics.PASSWORD); // pwd
