@@ -47,8 +47,12 @@ public class JodaTimeTest {
         System.out.println(anyDate.toString("yyyy-MM-dd HH:mm:ss"));
         System.out.println(anyDate.toString("yyyy年MM月dd日HH点mm分ss秒", Locale.SIMPLIFIED_CHINESE));
         
-        DateTime newDate = DateTime.parse("2017-08-15T16:42:46", DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss"));
-        System.out.println(newDate.toString());
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss");
+        DateTime newDate = DateTime.parse("2017-08-15T16:42:46", formatter);
+        System.out.println("parse1: " + newDate.toString());
+        
+        newDate = formatter.parseDateTime("2017-09-26T16:42:46");
+        System.out.println("parse2: " + newDate.toString());
     }
     
     @Test
