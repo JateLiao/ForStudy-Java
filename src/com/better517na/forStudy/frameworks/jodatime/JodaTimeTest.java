@@ -13,6 +13,8 @@ import java.util.Locale;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.junit.Test;
 
 /**
@@ -28,11 +30,11 @@ public class JodaTimeTest {
     public void test1(){
         DateTime anyDate = new DateTime().withDate(2017, 8, 15);
         System.out.println(anyDate.toString());
-        System.out.println(anyDate.toString("yyyy-MM-dd HH:mm:ss"));
+        System.out.println("yyyy-MM-dd'T'HH:mm:ss: " + anyDate.toString("yyyy-MM-dd'T'HH:mm:ss"));
         
         anyDate = anyDate.plusDays(2);
         System.out.println(anyDate.toString());
-        System.out.println(anyDate.toString("yyyy-MM-dd HH:mm:ss"));
+        System.out.println("yyyy-MM-dd HH:mm:ss: " + anyDate.toString("yyyy-MM-dd HH:mm:ss"));
         
         Date date  = anyDate.toDate();
         System.out.println(date.toString());
@@ -44,6 +46,9 @@ public class JodaTimeTest {
         System.out.println(anyDate.toString());
         System.out.println(anyDate.toString("yyyy-MM-dd HH:mm:ss"));
         System.out.println(anyDate.toString("yyyy年MM月dd日HH点mm分ss秒", Locale.SIMPLIFIED_CHINESE));
+        
+        DateTime newDate = DateTime.parse("2017-08-15T16:42:46", DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss"));
+        System.out.println(newDate.toString());
     }
     
     @Test
