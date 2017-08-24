@@ -8,7 +8,7 @@
  */
 package com.better517na.forStudy.advanced.concurrent.concurrenttest.on20170818;
 
-import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
  * TODO 添加类的一句话简单描述.
@@ -43,7 +43,12 @@ public class CntDwnLtchRunner implements Runnable {
      */
     @Override
     public void run() {
-        System.out.println(this.name + "已启动!");
+        try {
+            Thread.sleep(TimeUnit.SECONDS.toMillis(2));
+            System.out.println(this.name + "已启动!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         CountDownLatchTest.cntDwnLatch.countDown();
     }
 

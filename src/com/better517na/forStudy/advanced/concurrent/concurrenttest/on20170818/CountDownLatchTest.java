@@ -10,7 +10,6 @@ package com.better517na.forStudy.advanced.concurrent.concurrenttest.on20170818;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -44,6 +43,7 @@ public class CountDownLatchTest {
         new Thread(){
             public void run() {
                 try {
+                    //调用await()方法的线程会被挂起，它会等待直到count值为0才继续执行
                     CountDownLatchTest.cntDwnLatch.await();
                     System.out.println("妈的，终于轮到我了，大家有什么要问的吗？");
                 } catch (Exception e) {
@@ -56,6 +56,30 @@ public class CountDownLatchTest {
             pool.execute(new CntDwnLtchRunner("runner" + i));
         }
         
+        pool.shutdown();
+    }
+
+    @Test
+    public void countDownLatchTest2() throws InterruptedException {
+        // Executors.newScheduledThreadPool(5);
+        ExecutorService pool = new ThreadPoolExecutor(4, 10, 60L, TimeUnit.SECONDS, new SynchronousQueue<Runnable>());
+        
+        new Thread(){
+            public void run() {
+                try {
+                    // //和await()类似，只不过等待一定的时间后count值还没变为0的话就会继续执行
+                    CountDownLatchTest.cntDwnLatch.await(3000, TimeUnit.MILLISECONDS);
+                    System.out.println("妈的，终于轮到我了，大家有什么要问的吗？");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            };
+        }.start();
+        
+        for (int i = 0; i < 5; i++) {
+            pool.execute(new CntDwnLtchRunner("runner" + i));
+        }
+        Thread.sleep(TimeUnit.SECONDS.toMillis(10));
         pool.shutdown();
     }
 }
