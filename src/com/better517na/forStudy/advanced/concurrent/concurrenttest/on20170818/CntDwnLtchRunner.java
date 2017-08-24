@@ -44,7 +44,7 @@ public class CntDwnLtchRunner implements Runnable {
     @Override
     public void run() {
         System.out.println(this.name + "已启动!");
-        new CountDownLatch(100).countDown();
+        CountDownLatchTest.cntDwnLatch.countDown();
     }
 
     /**

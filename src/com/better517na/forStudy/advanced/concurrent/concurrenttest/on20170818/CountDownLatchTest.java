@@ -8,6 +8,7 @@
  */
 package com.better517na.forStudy.advanced.concurrent.concurrenttest.on20170818;
 
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.SynchronousQueue;
@@ -29,12 +30,29 @@ import org.junit.Test;
  * @author tianzhong
  */
 public class CountDownLatchTest {
+    
+    /**
+     * 添加字段注释.
+     */
+    public static final CountDownLatch cntDwnLatch = new CountDownLatch(5);
 
     @Test
     public void countDownLatchTest() {
         // Executors.newScheduledThreadPool(5);
         ExecutorService pool = new ThreadPoolExecutor(4, 10, 60L, TimeUnit.SECONDS, new SynchronousQueue<Runnable>());
-        for (int i = 0; i < 10; i++) {
+        
+        new Thread(){
+            public void run() {
+                try {
+                    CountDownLatchTest.cntDwnLatch.await();
+                    System.out.println("妈的，终于轮到我了，大家有什么要问的吗？");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            };
+        }.start();
+        
+        for (int i = 0; i < 5; i++) {
             pool.execute(new CntDwnLtchRunner("runner" + i));
         }
         
