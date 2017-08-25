@@ -38,5 +38,7 @@ public class BeaUtilsTest {
         
         moden.getTmp().setTmpInfo("new tmp info...");
         System.out.println(newModel.getTmp().getTmpInfo());
+        
+        System.out.println(moden.getTmp().getTmpInfo());
     }
 }
