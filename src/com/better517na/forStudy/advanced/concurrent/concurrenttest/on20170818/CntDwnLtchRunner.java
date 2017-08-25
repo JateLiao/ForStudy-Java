@@ -43,9 +43,9 @@ public class CntDwnLtchRunner implements Runnable {
      */
     @Override
     public void run() {
+        System.out.println(this.name + "已启动!");
         try {
             Thread.sleep(TimeUnit.SECONDS.toMillis(2));
-            System.out.println(this.name + "已启动!");
         } catch (Exception e) {
             e.printStackTrace();
         }

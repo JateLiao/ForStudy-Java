@@ -57,6 +57,12 @@ public class CountDownLatchTest {
         }
         
         pool.shutdown();
+        
+        try {
+            Thread.sleep(TimeUnit.SECONDS.toMillis(10));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
