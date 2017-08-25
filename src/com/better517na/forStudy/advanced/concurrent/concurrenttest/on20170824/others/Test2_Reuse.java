@@ -11,8 +11,6 @@ package com.better517na.forStudy.advanced.concurrent.concurrenttest.on20170824.o
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.TimeUnit;
 
-import com.better517na.forStudy.advanced.concurrent.concurrenttest.on20170824.others.Test1.Writer;
-
 /**
  * 这个小demo体现CyclicBarrier的可重复使用的特性. 
  * @author     tianzhong
