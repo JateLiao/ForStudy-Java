@@ -6,7 +6,7 @@
  * 修改时间：2017年8月25日
  * 修改内容：新增
  */
-package com.better517na.forStudy.advanced.concurrent.concurrenttest.on20170824.others;
+package com.better517na.forStudy.advanced.concurrent.concurrenttest.on20170824_CyclicBarrierTest.others;
 
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.TimeUnit;

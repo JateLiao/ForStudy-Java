@@ -6,7 +6,7 @@
  * 修改时间：2017年8月18日
  * 修改内容：新增
  */
-package com.better517na.forStudy.advanced.concurrent.concurrenttest.on20170818;
+package com.better517na.forStudy.advanced.concurrent.concurrenttest.on20170818_CountDownLatchTest;
 
 import java.util.concurrent.TimeUnit;
 
