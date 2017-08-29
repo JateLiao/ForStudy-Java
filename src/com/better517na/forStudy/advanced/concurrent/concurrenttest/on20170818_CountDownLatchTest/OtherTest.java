@@ -12,13 +12,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 /**
- * TODO 添加类的一句话简单描述.
- * <p>
- * TODO 详细描述
- * <p>
- * TODO 示例代码
- * <pre>
- * </pre>
+ * TODO 测试CountDownLatch是否是只能让一个线程等待，还是能让一组线程等待。
  * 
  * @author     tianzhong
  */
