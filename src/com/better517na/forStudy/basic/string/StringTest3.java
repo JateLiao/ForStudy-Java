@@ -8,6 +8,8 @@
  */
 package com.better517na.forStudy.basic.string;
 
+import java.text.MessageFormat;
+
 import org.junit.Test;
 
 /**
@@ -28,5 +30,11 @@ public class StringTest3 {
         Double d = 35.55;
         System.out.println(String.format("%.1f", d));
     }
-
+    
+    @Test
+    public void test2(){
+        String s = "http://app.super8.com.cn/Hotel/Images{0}hotelID=?";
+        System.out.println(MessageFormat.format(s, "517"));
+    }
+    
 }
