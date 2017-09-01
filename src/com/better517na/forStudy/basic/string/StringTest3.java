@@ -37,4 +37,11 @@ public class StringTest3 {
         System.out.println(MessageFormat.format(s, "517"));
     }
     
+    @Test
+    public void test3(){
+        // 2.0*4.5
+        String s = "2.0*4";
+        System.out.println(s.matches("[0-9](\\.[0-9]{1,2})?\\*[0-9](\\.[0-9]{1,2})?"));
+    }
+    
 }
