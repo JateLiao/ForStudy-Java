@@ -42,12 +42,15 @@ public class StringTest3 {
         // 2.0*4.5
         String s = "20/40";
         // System.out.println(s.matches("[0-9](\\.[0-9]{1,2})?\\*[0-9](\\.[0-9]{1,2})?"));
-        System.out.println(s.matches("[0-9](\\.?[0-9]{1,2})?(\\*|x|X|\\+|/)[0-9](\\.?[0-9]{1,2})?"));
+        // System.out.println(s.matches("[0-9](\\.?[0-9]{1,2})?(\\*|x|X|\\+|/)[0-9](\\.?[0-9]{1,2})?"));
+        
+        s = "1.5.0X2.0.000";
+        System.out.println(s.matches("[0-9](\\.?[0-9]{1,2})?(\\.?[0-9]{1,2})?(\\*|x|X|\\+|/)[0-9](\\.?[0-9]{1,2})?(\\.?[0-9]{1,2})?"));
 
-        s = "1.2*2.2或者1.8*2";
-        System.out.println(s.split("或"));
-        System.out.println(s.split("或|或者"));
-        System.out.println(s.split("或者|或"));
+        // s = "1.2*2.2或者1.8*2";
+        // System.out.println(s.split("或"));
+        // System.out.println(s.split("或|或者"));
+        // System.out.println(s.split("或者|或"));
     }
     
 }
