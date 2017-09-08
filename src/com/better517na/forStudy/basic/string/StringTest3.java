@@ -12,6 +12,7 @@ import java.text.MessageFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
 /**
@@ -53,6 +54,18 @@ public class StringTest3 {
         // System.out.println(s.split("或"));
         // System.out.println(s.split("或|或者"));
         // System.out.println(s.split("或者|或"));
+    }
+    
+    @Test
+    public void test5(){
+        String ss = "5.65.7";
+
+        System.out.println(ss.substring(0, Math.min(ss.lastIndexOf("."), ss.length())));
+        System.out.println("======================================");
+        
+        System.out.println(ss.indexOf("."));
+        System.out.println(ss.lastIndexOf("."));
+        System.out.println(ss.substring(0, ss.lastIndexOf(".")));
     }
     
     @Test
