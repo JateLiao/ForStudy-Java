@@ -40,6 +40,11 @@ public class Model {
     private Date date;
 
     /**
+     * 添加字段注释.
+     */
+    private String dateStr;
+
+    /**
      * 构造函数.
      * 
      */
@@ -52,6 +57,7 @@ public class Model {
      * 
      */
     public Model(String dateStr) {
+        this.dateStr = dateStr;
         if (null == sdf) {
             sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         }
@@ -71,6 +77,25 @@ public class Model {
             sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         }
         return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(this.date);
+    }
+
+    /**
+     * 设置dateStr.
+     * 
+     * @return 返回dateStr
+     */
+    public String getDateStr() {
+        return dateStr;
+    }
+
+    /**
+     * 获取dateStr.
+     * 
+     * @param dateStr
+     *            要设置的dateStr
+     */
+    public void setDateStr(String dateStr) {
+        this.dateStr = dateStr;
     }
 
     /**

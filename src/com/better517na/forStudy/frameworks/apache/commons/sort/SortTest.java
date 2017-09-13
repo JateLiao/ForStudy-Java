@@ -51,7 +51,7 @@ public class SortTest {
         System.out.println("Before Sort: " + list);
         
         List<Object> sortFileds = new ArrayList<>();
-        sortFileds.add(new BeanComparator("date", cmp));
+        sortFileds.add(new BeanComparator("dateStr", cmp));
         
         // 创建一个排序链  
         ComparatorChain multiSort = new ComparatorChain(sortFileds);
