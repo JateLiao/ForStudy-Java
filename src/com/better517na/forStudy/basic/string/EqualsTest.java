@@ -10,6 +10,9 @@ package com.better517na.forStudy.basic.string;
 
 import java.util.Objects;
 
+import org.apache.commons.lang.StringUtils;
+import org.junit.Test;
+
 /**
  * TODO 添加类的一句话简单描述.
  * <p>
@@ -26,5 +29,31 @@ public class EqualsTest {
     public static void main(String[] args) {
         double deductFeesBefore = 0.0;
         System.out.println(Objects.equals(0.0, deductFeesBefore));
+    }
+    
+    /**
+     * TODO 添加方法注释.
+     * 
+     */
+    @Test
+    public void test1() {
+        String s = "|fff|||4444||";
+        s = "dads";
+        String[] aa = s.split("\\|");
+        System.out.println(aa.length);
+        for (String string : aa) {
+            System.out.print(string);
+        }
+    }
+    
+    /**
+     * TODO 添加方法注释.
+     * 
+     */
+    @Test
+    public void test2() {
+        StringBuffer names = new StringBuffer(""); // 名称
+        System.out.println(names.toString());
+        System.out.println(StringUtils.isNotBlank(names.toString()));
     }
 }
