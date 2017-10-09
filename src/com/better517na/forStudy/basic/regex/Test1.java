@@ -51,4 +51,10 @@ public class Test1 {
         }
     }
     
+    @Test
+    public void testw(){
+        String str = "1张2米宽的大床和一张1.35米宽的小床";
+        System.out.println(str.matches("[0-9]张[0-9]\\.?[0-9]{0,3}?米.+床"));
+    }
+    
 }
