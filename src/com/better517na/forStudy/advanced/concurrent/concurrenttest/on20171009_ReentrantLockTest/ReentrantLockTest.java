@@ -8,7 +8,6 @@
  */
 package com.better517na.forStudy.advanced.concurrent.concurrenttest.on20171009_ReentrantLockTest;
 
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
