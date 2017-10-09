@@ -9,6 +9,9 @@
 package com.better517na.forStudy.advanced.concurrent.concurrenttest.on20171009_ReentrantLockTest;
 
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -24,14 +27,48 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author tianzhong
  */
 public class ReentrantLockTest {
-    
-    ReentrantLock lock = new ReentrantLock();
 
-    public void lockTest() {
-        CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<>();
+    /**
+     * 添加字段注释.
+     */
+    private ReentrantLock lock = new ReentrantLock();
+
+    public static void main(String[] args) throws InterruptedException {
+        ExecutorService executors = Executors.newFixedThreadPool(5);
+        ReentrantLockTest test = new ReentrantLockTest();
+        for (int i = 0; i < 5; i++) {
+            executors.execute(test.new ReentrantLockThread());
+        }
+        
+        executors.shutdown();
+        while (!executors.isTerminated()) {
+            Thread.sleep(TimeUnit.SECONDS.toMillis(1));
+        }
+        
+        System.out.println("\r\n\r\nGame Over!!!");
     }
 
-    public static void main(String[] args) {
+    class ReentrantLockThread implements Runnable {
+
+        /**
+         * {@inheritDoc}.
+         */
+        @Override
+        public void run() {
+            final ReentrantLock newLock = lock;
+            try {
+                System.out.println(Thread.currentThread().getName() + "等待获得锁...");
+                newLock.lock();
+                System.out.println(Thread.currentThread().getName() + "已获得锁，开始执行!");
+                Thread.sleep(TimeUnit.SECONDS.toMillis(5));
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (null != newLock && newLock.isLocked()) {
+                    newLock.unlock();
+                }
+            }
+        }
 
     }
 }
