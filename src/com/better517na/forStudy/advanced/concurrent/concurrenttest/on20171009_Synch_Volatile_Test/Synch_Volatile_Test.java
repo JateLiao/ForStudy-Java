@@ -35,7 +35,7 @@ public class Synch_Volatile_Test {
             executors.execute(new Runnable() {
                 /**
                  * volatile并不能保证每次最后numVolatile的值为5000，因为volatile保证了可见性，但是没有保证原子性，
-                 * 而自增并不是一个原子操作，synchronized作用于自增方法，使得increase()方法具有了原子性，因此每次的值都为5000。
+                 * 而自增（++运算符）并不是一个原子操作，synchronized作用于自增方法，使得increase()方法具有了原子性，因此每次的值都为5000。
                  */
                 @Override
                 public void run() {
