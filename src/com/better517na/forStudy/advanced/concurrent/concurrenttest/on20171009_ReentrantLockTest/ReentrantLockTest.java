@@ -30,7 +30,8 @@ public class ReentrantLockTest {
     /**
      * 添加字段注释.
      */
-    private ReentrantLock lock = new ReentrantLock();
+    private ReentrantLock lock = new ReentrantLock(); // 默认为非公平锁
+    // private ReentrantLock lock = new ReentrantLock(true); // true: 公平锁，严格按照申请所的时间顺序获得锁
 
     public static void main(String[] args) throws InterruptedException {
         ExecutorService executors = Executors.newFixedThreadPool(5);
