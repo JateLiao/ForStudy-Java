@@ -10,6 +10,7 @@ package com.better517na.forStudy.basic.collection;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Test;
 
@@ -27,8 +28,12 @@ import org.junit.Test;
  */
 public class MapTest {
 
+    @SuppressWarnings("unchecked")
     @Test
-    public void test1() {
+    public void test1() throws InstantiationException, IllegalAccessException {
+        Map<String, String> map1 = HashMap.class.newInstance();
+        map1.put("", "");
+        
         HashMap<String, String> map = new HashMap<>(10);
         map.put("", "");
         
