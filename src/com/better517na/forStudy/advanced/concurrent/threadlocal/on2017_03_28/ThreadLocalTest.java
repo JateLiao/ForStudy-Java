@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 import org.junit.Test;
 
@@ -25,7 +26,8 @@ public class ThreadLocalTest {
 
     @Test
     public void threadTest() {
-        Executor es = Executors.newScheduledThreadPool(10);
+        int corePoolSize = 10;
+        Executor es = new ScheduledThreadPoolExecutor(corePoolSize); // Executors.newScheduledThreadPool(10);
         List<Runnable> runs = new ArrayList<>();
         locals.set("ppp");
         for (int i = 0; i < 10; i++) {
@@ -36,6 +38,7 @@ public class ThreadLocalTest {
                 }
             };
             runs.add(run);
+            locals.remove();
             es.execute(run);
         }
 

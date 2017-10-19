@@ -32,8 +32,11 @@ public class MapTest {
     @Test
     public void test1() throws InstantiationException, IllegalAccessException {
         Map<String, String> map1 = HashMap.class.newInstance();
-        map1.put("", "");
-        
+        map1.put("1", "123");
+        map1.put("2", "321");
+        map1.put("3", "112233");
+        map1.values();
+        new ArrayList<String>(map1.values());
         HashMap<String, String> map = new HashMap<>(10);
         map.put("", "");
         

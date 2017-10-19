@@ -37,13 +37,11 @@ public class SemaphoreTest {
         
         System.out.println(semaphore.availablePermits());
         
-        
-        int N = 8;            //工人数
-        semaphore = new Semaphore(5); //机器数目
-        for(int i=0;i<N;i++){
-            new Thread(new SemaphoreTest().new Runner(i,semaphore)).start();
+        int workerNum = 8; // 工人数
+        semaphore = new Semaphore(5); // 机器数目
+        for (int i = 0; i < workerNum; i++) {
+            new Thread(new SemaphoreTest().new Runner(i, semaphore)).start();
         }
-        
         
         try {
             Thread.sleep(TimeUnit.SECONDS.toMillis(20));

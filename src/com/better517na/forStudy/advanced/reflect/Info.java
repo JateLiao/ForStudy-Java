@@ -184,7 +184,7 @@ public class Info {
     }
 
     @org.junit.Test
-    public void ShallowCopyTest(){
+    public void shallowCopyTest(){
         Acc a1 = new Acc();
         a1.setI(10);
         a1.setName("Source Name");

@@ -12,8 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 
@@ -26,7 +28,7 @@ public class CallableTest {
     
     @Test
     public void test1() throws InterruptedException, ExecutionException{
-        ExecutorService es = Executors.newFixedThreadPool(10);
+        ExecutorService es = new ThreadPoolExecutor(8, 10, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>());
         List<Future<String>> res = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             res.add(es.submit(new CallableInstance("Thread" + (i + 1))));

@@ -22,7 +22,9 @@ public class ScheduledExecutorServiceTest {
     
     public static void main(String[] args) {
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+        // new ThreadPoolExecutor(5, 5, 0L, TimeUnit.MILLISECONDS, new BlockingQueue<Runnable>());
         executorService.scheduleAtFixedRate(new Runnable() {
+            @Override
             public void run() {
                 System.out.println("丢雷楼某啊...");
                 if (++count == 5) {

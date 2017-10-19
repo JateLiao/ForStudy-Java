@@ -10,6 +10,9 @@ package com.better517na.forStudy.advanced.concurrent.concurrenttest.on20171009_S
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * TODO 添加类的一句话简单描述.
@@ -30,7 +33,8 @@ public class Synch_Volatile_Test {
     
     public static void main(String[] args) throws InterruptedException {
         final Synch_Volatile_Test test = new Synch_Volatile_Test();
-        ExecutorService executors = Executors.newFixedThreadPool(5);
+        int nThreads = 5;
+        ExecutorService executors = new ThreadPoolExecutor(nThreads , nThreads, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>());
         for (int i = 0; i < 5; i++) {
             executors.execute(new Runnable() {
                 /**
@@ -46,7 +50,9 @@ public class Synch_Volatile_Test {
             });
         }
 
-        ExecutorService executors1 = Executors.newFixedThreadPool(5);
+        ExecutorService executors1 = new ThreadPoolExecutor(nThreads, nThreads,
+                0L, TimeUnit.MILLISECONDS,
+                new LinkedBlockingQueue<Runnable>());
         for (int i = 0; i < 5; i++) {
             executors1.execute(new Runnable() {
                 

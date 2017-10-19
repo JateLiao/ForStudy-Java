@@ -244,17 +244,17 @@ public class CSharpToJavaModelUtils {
     /**
      * 构造Java model原始信息.
      * 
-     * @param Paths
+     * @param paths
      *            所有待转换文件绝对路径.
      */
-    private static void buildOriginData(List<String> Paths) {
+    private static void buildOriginData(List<String> paths) {
         String fileTxt = ""; // 文本内容
         String fileClassname = ""; // 类名
         String fieldDesc = ""; // 字段描述
         String fieldNameUpper = ""; // 字段名-大写开头
         String type = ""; // 类型
         String relativePath = ""; // 相对路径
-        for (String absolutePath : Paths) {
+        for (String absolutePath : paths) {
             relativePath = absolutePath.replace(originPath, "");
             List<FieldVo> fieldVos = new ArrayList<>(); // 字段信息集合
             fileClassname = absolutePath.substring(absolutePath.lastIndexOf("\\") + 1, absolutePath.lastIndexOf("."));
