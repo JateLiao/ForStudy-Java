@@ -23,7 +23,7 @@ public class CGLibProxy implements MethodInterceptor {
     /**
      * 添加字段注释.
      */
-    private static CGLibProxy instance = new CGLibProxy();
+    private static final CGLibProxy instance = new CGLibProxy();
 
     /**
      * 构造函数.
