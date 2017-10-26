@@ -155,6 +155,7 @@ public class HttpToolKit {
         RequestConfig config = builder.setConnectTimeout(1000 * DEFAUL_CONTIMEOUT).setSocketTimeout(1000 * DEFAUL_CONTIMEOUT).build();
         try {
             SSLContext sslContext = new SSLContextBuilder().loadTrustMaterial(null, new TrustStrategy() {
+                @Override
                 public boolean isTrusted(X509Certificate[] chain, String authType) throws CertificateException {
                     return true; // 信任所有
                 }
