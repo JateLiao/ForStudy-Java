@@ -25,15 +25,6 @@ import java.lang.reflect.Proxy;
  * @author     tianzhong
  */
 public class Dynamic_JDK_Generic <T> implements InvocationHandler{
-    
-    /**
-     * 构造函数.
-     * 
-     * @param helloImpl
-     */
-    public Dynamic_JDK_Generic(T t) {
-        this.target = t;
-    }
 
     public static void main(String[] args) {
         IHello hello = new HelloImpl();
@@ -43,6 +34,15 @@ public class Dynamic_JDK_Generic <T> implements InvocationHandler{
         
         // 一行流
         new Dynamic_JDK_Generic<IHello>(hello).newGenericProxyInstance().sayHello("你再瞅试试？？\r\n-------\r\n试试就试试！！");
+    }
+    
+    /**
+     * 构造函数.
+     * 
+     * @param helloImpl
+     */
+    public Dynamic_JDK_Generic(T t) {
+        this.target = t;
     }
     
     
