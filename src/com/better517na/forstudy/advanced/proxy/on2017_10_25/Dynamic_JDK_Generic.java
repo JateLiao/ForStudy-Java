@@ -28,7 +28,7 @@ public class Dynamic_JDK_Generic <T> implements InvocationHandler{
 
     public static void main(String[] args) {
         IHello hello = new HelloImpl();
-        Dynamic_JDK_Generic<IHello> dynamic = new Dynamic_JDK_Generic<IHello>(hello);
+        Dynamic_JDK_Generic<IHello> dynamic = new Dynamic_JDK_Generic<>(hello);
         IHello proxy = dynamic.newGenericProxyInstance();
         proxy.sayHello("你瞅啥？？\r\n-------\r\n瞅你咋地？？\r\n");
         
