@@ -56,4 +56,38 @@ public class EqualsTest {
         System.out.println(names.toString());
         System.out.println(StringUtils.isNotBlank(names.toString()));
     }
+    
+    /**
+     * TODO 添加方法注释.
+     * 
+     */
+    @Test
+    public void test3() {
+        String s1 = "abc";
+        String s2 = new String("abc");
+        String s3 = "a" + "bc";
+        String s4 = "abc".intern();
+
+        System.out.println("s1==s2: " + (s1 == s2));
+        System.out.println("s1==s3: " + (s1 == s3));
+        System.out.println("s1==s4: " + (s1 == s4));
+        System.out.println("s2==s3: " + (s2 == s3));
+        System.out.println("s2==s4: " + (s2 == s4));
+        System.out.println("s3==s4: " + (s3 == s4));
+    }
+    
+    /**
+     * TODO 添加方法注释.
+     * 
+     */
+    @Test
+    public void test4() {
+        String s1 = "abc";
+        String s2 = "abc";
+        String s3 = new String("abc");
+        String s4 = new String("abc");
+
+        System.out.println("s1==s2: " + (s1 == s2));
+        System.out.println("s3==s4: " + (s3 == s4));
+    }
 }
