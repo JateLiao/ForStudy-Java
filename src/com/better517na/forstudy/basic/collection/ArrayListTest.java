@@ -31,7 +31,7 @@ public class ArrayListTest {
 
         list1.get(0).i = 11;
         list1.get(0).name = "new no1";
-        System.out.println(list2);
+        System.out.println(list2);    /** List的add和addAll方法都是复制引用的地址到新的index上 */
     }
 
     class Tmp {
