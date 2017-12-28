@@ -63,6 +63,7 @@ public class EqualsTest {
      */
     @Test
     public void test3() {
+        System.out.println (10);
         String s1 = "abc";
         String s2 = new String("abc");
         String s3 = "a" + "bc";
