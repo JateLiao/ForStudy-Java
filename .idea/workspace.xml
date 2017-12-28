@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5373df63-5c60-4f86-aa13-948dea1df54f" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/KOBE.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/lib/hamcrest-core-1.3.jar" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/ForStudy.iml" afterPath="$PROJECT_DIR$/ForStudy.iml" />
       <change beforePath="$PROJECT_DIR$/bin/util/DESUtil.class" afterPath="$PROJECT_DIR$/bin/util/DESUtil.class" />
-      <change beforePath="$PROJECT_DIR$/src/com/better517na/forstudy/basic/string/EqualsTest.java" afterPath="$PROJECT_DIR$/src/com/better517na/forstudy/basic/string/EqualsTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -951,7 +945,7 @@
       <workItem from="1514466104995" duration="927000" />
       <workItem from="1514467051061" duration="172000" />
       <workItem from="1514467240929" duration="4154000" />
-      <workItem from="1514471650993" duration="2540000" />
+      <workItem from="1514471650993" duration="2583000" />
     </task>
     <task id="LOCAL-00001" summary="idea setting file imported">
       <created>1514390407377</created>
@@ -960,7 +954,14 @@
       <option name="project" value="LOCAL" />
       <updated>1514390407377</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="idea run enviornment done.">
+      <created>1514476718322</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1514476718322</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -975,7 +976,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14024000" />
+    <option name="totallyTimeSpent" value="14067000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -1029,7 +1030,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="idea setting file imported" />
-    <option name="LAST_COMMIT_MESSAGE" value="idea setting file imported" />
+    <MESSAGE value="idea run enviornment done." />
+    <option name="LAST_COMMIT_MESSAGE" value="idea run enviornment done." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
