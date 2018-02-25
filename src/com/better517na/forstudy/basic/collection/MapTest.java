@@ -10,15 +10,15 @@ package com.better517na.forstudy.basic.collection;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import org.junit.Test;
+import org.springframework.beans.BeanUtils;
 
 /**
  * TODO 添加类的一句话简单描述.
  * <p>
  * TODO 详细描述
- * <p>
+ * <p>画虎画皮难虎骨你就是一个二皮脸，哈哈哈哈
  * TODO 示例代码
  * 
  * <pre>
@@ -31,7 +31,7 @@ public class MapTest {
     @SuppressWarnings("unchecked")
     @Test
     public void test1() throws InstantiationException, IllegalAccessException {
-        Map<String, String> map1 = HashMap.class.newInstance();
+        HashMap<String, String> map1 = new HashMap<>(); // .class.newInstance();
         map1.put("1", "123");
         map1.put("2", "321");
         map1.put("3", "112233");
@@ -40,7 +40,11 @@ public class MapTest {
         HashMap<String, String> map = new HashMap<>(10);
         map.put("", "");
         
+        BeanUtils.copyProperties(null, null);
+        
         ArrayList<String> list = new ArrayList<>();
         list.add("");
+        System.out.println(map1);
+        System.out.println(list);
     }
 }
