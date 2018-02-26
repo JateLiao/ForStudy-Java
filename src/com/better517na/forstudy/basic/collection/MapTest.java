@@ -10,6 +10,7 @@ package com.better517na.forstudy.basic.collection;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 import org.junit.Test;
 import org.springframework.beans.BeanUtils;
@@ -41,6 +42,10 @@ public class MapTest {
         map.put("", "");
         
         BeanUtils.copyProperties(null, null);
+        TreeMap<String, String> treeMap = new TreeMap<>();
+        treeMap.put("1", "123");
+        treeMap.put("2", "321");
+        treeMap.put("3", "112233");
         
         ArrayList<String> list = new ArrayList<>();
         list.add("");
